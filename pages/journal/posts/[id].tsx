@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next"
-import { getAllPosts, getPostsById, Post } from "../../../lib"
+import { getAllPosts, getPostIDs, Post } from "../../../lib"
+import hydrate from "next-mdx-remote/hydrate"
 
 type PostProps = {
   post: Post
@@ -9,11 +10,11 @@ const PostContainer = ({ post }: PostProps) => {
   // TODO: need to import some layout component here
   return (
     <div>
-      This is a post
+      <h1>{post.title}</h1>
       <div>
         {post.id}
-        {post.title}
         {post.date}
+        {hydrate(post.content)}
       </div>
     </div>
   )
@@ -25,7 +26,7 @@ export default PostContainer
 export const getStaticProps: GetStaticProps<any, { id: string }> = async (
   context
 ) => {
-  const post = getAllPosts().find((p) => p.id === context.params?.id)
+  const post = (await getAllPosts()).find((p) => p.id === context.params?.id)
   if (!post) throw new Error("Couldn't find a post!")
   return {
     props: {
@@ -35,9 +36,9 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async (
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = getPostsById()
+  const ids = await getPostIDs()
   return {
-    paths: posts,
+    paths: ids,
     fallback: false /* TODO: I probably want a fallback*/,
   }
 }

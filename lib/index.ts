@@ -4,6 +4,7 @@ import { cwd } from "process"
 import matter from "gray-matter"
 import { readFileSync } from "fs"
 import moment from "moment"
+import renderToString from "next-mdx-remote/render-to-string"
 
 type FrontMatterData = {
   title: string
@@ -12,9 +13,9 @@ type FrontMatterData = {
 
 export type Post = {
   id: string
-  fullPath: string
   title: string
   date: string
+  content: Source
 }
 
 const recursivelyGetFiles = (dir: string): string[] => {
@@ -26,37 +27,40 @@ const recursivelyGetFiles = (dir: string): string[] => {
   return Array.prototype.concat(...files)
 }
 
-export const getAllPosts = (): Post[] => {
+export const getAllPosts = async (): Promise<Post[]> => {
   const p = resolve(cwd(), "posts")
   const files = recursivelyGetFiles(p)
-  const posts = files.map((file) => {
-    const fileContents = readFileSync(file, "utf8")
-    const frontMatter = matter(fileContents)
-    const frontMatterData = frontMatter.data as FrontMatterData
-    const split = file.split("/")
-    const id = split[split.length - 1].split(".")[0]
-    return {
-      ...frontMatterData,
-      id,
-      fullPath: file,
-    }
-  })
+  const posts = await Promise.all(
+    files.map(async (file) => {
+      const fileContents = readFileSync(file, "utf8")
+      const frontMatter = matter(fileContents)
+      const frontMatterData = frontMatter.data as FrontMatterData
+      const split = file.split("/")
+      const id = split[split.length - 1].split(".")[0]
+      const mdxSource = await renderToString(frontMatter.content)
+
+      return {
+        ...frontMatterData,
+        id,
+        content: mdxSource,
+      }
+    })
+  )
   return posts
 }
 
 /**
- * Returns all the posts indexed by ID, for purpose of
- * /posts/<id>
+ * Returns all the post IDs
  */
-export const getPostsById = () => {
-  const posts = getAllPosts()
+export const getPostIDs = async () => {
+  const posts = await getAllPosts()
   return posts.map((post) => ({
-    params: post,
+    params: { id: post.id },
   }))
 }
 
-export const getAllPostsByYear = (year: number) => {
-  const posts = getAllPosts()
+export const getAllPostsByYear = async (year: number) => {
+  const posts = await getAllPosts()
   return posts.filter((post) => {
     const postYear = moment(post.date).year()
     return postYear === year

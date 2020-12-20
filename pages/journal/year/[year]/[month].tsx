@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps<
   if (context.params === undefined) throw new Error("no params")
   const yearNumber = parseInt(context.params.year, 10)
 
-  const postsInYear = getAllPostsByYear(yearNumber)
+  const postsInYear = await getAllPostsByYear(yearNumber)
   // Need to get posts in the given month
   const postsInMonth = postsInYear.filter((m) => {
     const month = moment(m.date).month()
@@ -59,7 +59,7 @@ export const getStaticProps: GetStaticProps<
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = getAllPosts()
+  const posts = await getAllPosts()
   // dedupe the years
   const years = [...new Set(posts.map((p) => moment(p.date).year().toString()))]
   const monthYears = years

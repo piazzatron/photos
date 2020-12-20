@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps<any, { year: string }> = async (
 ) => {
   if (!context.params) throw new Error("no params")
   const yearNumber = parseInt(context.params.year, 10)
-  const posts = getAllPostsByYear(yearNumber)
+  const posts = await getAllPostsByYear(yearNumber)
 
   // TODO: need some sort of 'make post' functionality here to actually
   // pull out the context of the post
@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps<any, { year: string }> = async (
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = getAllPosts()
+  const posts = await getAllPosts()
   // dedupe the years
   const years = [...new Set(posts.map((p) => moment(p.date).year().toString()))]
   return {
