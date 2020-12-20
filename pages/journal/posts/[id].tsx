@@ -1,31 +1,23 @@
 import { GetStaticPaths, GetStaticProps } from "next"
-import { getAllPosts, getPostIDs, Post } from "../../../lib"
-import hydrate from "next-mdx-remote/hydrate"
+import Post from "../../../components/post/Post"
+import { getAllPosts, getPostIDs } from "../../../lib"
+import { Post as PostType } from "../../../lib/index"
 
-type PostProps = {
-  post: Post
+type PostPageProps = {
+  post: PostType
 }
 
-const PostContainer = ({ post }: PostProps) => {
-  // TODO: need to import some layout component here
-  return (
-    <div>
-      <h1>{post.title}</h1>
-      <div>
-        {post.id}
-        {post.date}
-        {hydrate(post.content)}
-      </div>
-    </div>
-  )
+const PostPage = ({ post }: PostPageProps) => {
+  // TODO: add layout etc
+  return <Post post={post} />
 }
 
-export default PostContainer
+export default PostPage
 
-// TODO: fix this any
-export const getStaticProps: GetStaticProps<any, { id: string }> = async (
-  context
-) => {
+export const getStaticProps: GetStaticProps<
+  { post: PostType },
+  { id: string }
+> = async (context) => {
   const post = (await getAllPosts()).find((p) => p.id === context.params?.id)
   if (!post) throw new Error("Couldn't find a post!")
   return {
