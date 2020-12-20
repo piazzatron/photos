@@ -1,0 +1,8 @@
+.container {
+  transform: scale(1);
+  transition: all 0.15s;
+}
+
+.container:hover {
+  transform: scale(1.05);
+}

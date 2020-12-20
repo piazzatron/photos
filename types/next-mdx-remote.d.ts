@@ -8,7 +8,7 @@ interface Source {
 }
 
 declare module "next-mdx-remote/hydrate" {
-  type HydrateOptions = { components: JSX.Element }
+  type HydrateOptions = { components: React.ReactNode }
 
   let hydrate: (source: Source, options?: HydrateOptions) => JSX.Element
   export default hydrate

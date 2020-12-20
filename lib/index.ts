@@ -5,6 +5,7 @@ import matter from "gray-matter"
 import { readFileSync } from "fs"
 import moment from "moment"
 import renderToString from "next-mdx-remote/render-to-string"
+import InteractiveImage from "../components/interactive-image/InteractiveImage"
 
 type FrontMatterData = {
   title: string
@@ -27,6 +28,10 @@ const recursivelyGetFiles = (dir: string): string[] => {
   return Array.prototype.concat(...files)
 }
 
+const components = {
+  InteractiveImage,
+}
+
 export const getAllPosts = async (): Promise<Post[]> => {
   const p = resolve(cwd(), "posts")
   const files = recursivelyGetFiles(p)
@@ -37,7 +42,9 @@ export const getAllPosts = async (): Promise<Post[]> => {
       const frontMatterData = frontMatter.data as FrontMatterData
       const split = file.split("/")
       const id = split[split.length - 1].split(".")[0]
-      const mdxSource = await renderToString(frontMatter.content)
+      const mdxSource = await renderToString(frontMatter.content, {
+        components,
+      })
 
       return {
         ...frontMatterData,

@@ -1,10 +1,13 @@
 import { Post as PostType } from "../../lib"
 import Link from "next/link"
 import hydrate from "next-mdx-remote/hydrate"
+import InteractiveImage from "../../components/interactive-image/InteractiveImage"
 
 type PostProps = {
   post: PostType
 }
+
+const components = { InteractiveImage }
 
 const Post = ({ post }: PostProps) => {
   // TODO: need to import some layout component here
@@ -18,7 +21,7 @@ const Post = ({ post }: PostProps) => {
       <div>
         {post.id}
         {post.date}
-        {hydrate(post.content)}
+        {hydrate(post.content, { components })}
       </div>
     </div>
   )
