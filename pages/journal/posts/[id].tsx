@@ -7,7 +7,6 @@ type PostProps = {
 
 const PostContainer = ({ post }: PostProps) => {
   // TODO: need to import some layout component here
-  console.log({ post })
   return (
     <div>
       This is a post
@@ -22,6 +21,7 @@ const PostContainer = ({ post }: PostProps) => {
 
 export default PostContainer
 
+// TODO: fix this any
 export const getStaticProps: GetStaticProps<any, { id: string }> = async (
   context
 ) => {

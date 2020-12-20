@@ -3,6 +3,7 @@ import { readdirSync } from "fs"
 import { cwd } from "process"
 import matter from "gray-matter"
 import { readFileSync } from "fs"
+import moment from "moment"
 
 type FrontMatterData = {
   title: string
@@ -52,4 +53,12 @@ export const getPostsById = () => {
   return posts.map((post) => ({
     params: post,
   }))
+}
+
+export const getAllPostsByYear = (year: number) => {
+  const posts = getAllPosts()
+  return posts.filter((post) => {
+    const postYear = moment(post.date).year()
+    return postYear === year
+  })
 }
