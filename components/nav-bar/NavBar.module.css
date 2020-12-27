@@ -1,0 +1,34 @@
+.container {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 30px;
+}
+
+.name {
+  font-size: 24px;
+}
+
+.subPages {
+  display: flex;
+  flex-direction: row;
+}
+
+.subPages > div {
+  margin-right: 18px;
+}
+
+.subPages > div:last-child {
+  margin-right: 0px;
+}
+
+.subpageLinks {
+  margin-left: auto;
+}
+
+
+.subPageButtonUnselected {
+  color: #A7A7A7 !important;
+}

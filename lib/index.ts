@@ -1,11 +1,11 @@
-import { resolve } from "path"
-import { readdirSync } from "fs"
-import { cwd } from "process"
-import matter from "gray-matter"
-import { readFileSync } from "fs"
-import moment from "moment"
-import renderToString from "next-mdx-remote/render-to-string"
-import InteractiveImage from "../components/interactive-image/InteractiveImage"
+import { resolve } from 'path'
+import { readdirSync } from 'fs'
+import { cwd } from 'process'
+import matter from 'gray-matter'
+import { readFileSync } from 'fs'
+import moment from 'moment'
+import renderToString from 'next-mdx-remote/render-to-string'
+import InteractiveImage from '../components/interactive-image/InteractiveImage'
 
 type FrontMatterData = {
   title: string
@@ -33,15 +33,15 @@ const components = {
 }
 
 export const getAllPosts = async (): Promise<Post[]> => {
-  const p = resolve(cwd(), "posts")
+  const p = resolve(cwd(), 'posts')
   const files = recursivelyGetFiles(p)
   const posts = await Promise.all(
     files.map(async (file) => {
-      const fileContents = readFileSync(file, "utf8")
+      const fileContents = readFileSync(file, 'utf8')
       const frontMatter = matter(fileContents)
       const frontMatterData = frontMatter.data as FrontMatterData
-      const split = file.split("/")
-      const id = split[split.length - 1].split(".")[0]
+      const split = file.split('/')
+      const id = split[split.length - 1].split('.')[0]
       const mdxSource = await renderToString(frontMatter.content, {
         components,
       })
@@ -51,7 +51,7 @@ export const getAllPosts = async (): Promise<Post[]> => {
         id,
         content: mdxSource,
       }
-    })
+    }),
   )
   return posts
 }

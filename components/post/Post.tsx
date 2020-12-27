@@ -1,7 +1,8 @@
-import { Post as PostType } from "../../lib"
-import Link from "next/link"
-import hydrate from "next-mdx-remote/hydrate"
-import InteractiveImage from "../../components/interactive-image/InteractiveImage"
+import { Post as PostType } from '../../lib'
+import Link from 'next/link'
+import hydrate from 'next-mdx-remote/hydrate'
+import InteractiveImage from '../../components/interactive-image/InteractiveImage'
+import FancyLink from '../fancy-link/FancyLink'
 
 type PostProps = {
   post: PostType
@@ -14,9 +15,7 @@ const Post = ({ post }: PostProps) => {
   return (
     <div>
       <h1>
-        <Link href={`/journal/posts/${post.id}`}>
-          <a>{post.title}</a>
-        </Link>
+        <FancyLink href={`/journal/posts/${post.id}`}>{post.title}</FancyLink>
       </h1>
       <div>
         {post.id}

@@ -1,0 +1,27 @@
+.playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.fontLight {
+  font-weight: 300;
+}
+
+.fontRegular {
+  font-weight: 400;
+}
+
+.fontSemiBold {
+  font-weight: 600;
+}
+
+.fontBold {
+  font-weight: 700;
+}
+
+.fontBlack {
+  font-weight: 900;
+}

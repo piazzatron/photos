@@ -1,7 +1,7 @@
-import { GetStaticPaths, GetStaticProps } from "next"
-import { getAllPosts, getAllPostsByYear, Post as PostType } from "../../../lib"
-import moment from "moment"
-import Post from "../../../components/post/Post"
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { getAllPosts, getAllPostsByYear, Post as PostType } from '../../../lib'
+import moment from 'moment'
+import Post from '../../../components/post/Post'
 
 type YearContainerProps = {
   posts: PostType[]
@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps<
   { posts: PostType[] },
   { year: string }
 > = async (context) => {
-  if (!context.params) throw new Error("no params")
+  if (!context.params) throw new Error('no params')
   const yearNumber = parseInt(context.params.year, 10)
   const posts = await getAllPostsByYear(yearNumber)
 

@@ -1,0 +1,31 @@
+.container {
+  color: black;
+  transition: all 0.03s;
+  position: relative;
+  transform: scale(1);
+}
+
+.container:hover, .container:hover * {
+  color: #00fff7 !important;
+}
+
+.container:active {
+  /* transform: scale(0.98); */
+  color: rgb(54, 54, 54);
+}
+
+.underline {
+  height: 2.5px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  /* background-color: #00fff7; */
+  background-color: black;
+  transform: translate3d(0px, 0px, 0px) scale(0, 0.9);
+  transform-origin: center;
+  transition: all 0.21s cubic-bezier(.21,-0.02,.35,1);
+}
+
+.underlineVisible {
+  transform: translate3d(0px, 0px, 0px) scale(1, 1);
+}
