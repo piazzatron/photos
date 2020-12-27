@@ -1,7 +1,7 @@
-import { GetStaticPaths, GetStaticProps } from "next"
-import Post from "../../../components/post/Post"
-import { getAllPosts, getPostIDs } from "../../../lib"
-import { Post as PostType } from "../../../lib/index"
+import { GetStaticPaths, GetStaticProps } from 'next'
+import Post from '../../../components/post/Post'
+import { getAllPosts, getPostIDs } from '../../../lib'
+import { Post as PostType } from '../../../lib/index'
 
 type PostPageProps = {
   post: PostType
