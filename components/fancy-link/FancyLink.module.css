@@ -6,7 +6,7 @@
 }
 
 .container:hover, .container:hover * {
-  color: #00fff7 !important;
+  color: #ff6b6b !important;
 }
 
 .container:active {
@@ -15,7 +15,7 @@
 }
 
 .underline {
-  height: 2.5px;
+  height: 4px;
   bottom: 0px;
   left: 0px;
   right: 0px;

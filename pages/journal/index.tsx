@@ -4,23 +4,21 @@ import moment from 'moment'
 import Post from '../../components/post/Post'
 import Head from 'next/head'
 import Layout from '../../components/layout/layout'
+import Journal from '../../components/journal/Journal'
 
 type JournalProps = {
   posts: PostType[]
 }
 
-const Journal = ({ posts }: JournalProps) => {
+const JournalPage = ({ posts }: JournalProps) => {
   return (
     <Layout>
       <div>
         <Head>
           <title>Piazza 📸</title>
         </Head>
-        This is the homepage
-        {posts.map((p) => (
-          <Post post={p} key={p.id} />
-        ))}
       </div>
+      <Journal posts={posts} />
     </Layout>
   )
 }
@@ -44,4 +42,4 @@ export const getStaticProps: GetStaticProps<
   }
 }
 
-export default Journal
+export default JournalPage

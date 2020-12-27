@@ -14,10 +14,11 @@
 .subPages {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .subPages > div {
-  margin-right: 18px;
+  margin-right: 14px;
 }
 
 .subPages > div:last-child {
@@ -25,7 +26,10 @@
 }
 
 .subpageLinks {
-  margin-left: auto;
+  margin-right: auto;
+  margin-left: 36px;
+  position: relative;
+  top: 4px;
 }
 
 
