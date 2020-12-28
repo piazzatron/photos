@@ -3,6 +3,11 @@
   transition: all 0.03s;
   position: relative;
   transform: scale(1);
+  display: inline-block;
+}
+
+.colored {
+  color: #9c5454;
 }
 
 .container:hover, .container:hover * {
@@ -15,7 +20,6 @@
 }
 
 .underline {
-  height: 4px;
   bottom: 0px;
   left: 0px;
   right: 0px;

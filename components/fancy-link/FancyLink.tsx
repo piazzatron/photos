@@ -5,14 +5,21 @@ import cn from 'classnames'
 
 type FancyLinkProps = {
   href: string
+  underlineHeight?: number
+  colored?: boolean
 }
 
-const FancyLink: React.FC<FancyLinkProps> = ({ href, children }) => {
+const FancyLink: React.FC<FancyLinkProps> = ({
+  underlineHeight = 4,
+  href,
+  children,
+  colored = false,
+}) => {
   const [isHover, setIsHover] = useState(false)
 
   return (
     <div
-      className={styles.container}
+      className={cn([styles.container, { [styles.colored]: colored }])}
       onMouseOver={() => setIsHover(true)}
       onMouseOut={() => setIsHover(false)}
     >
@@ -21,6 +28,7 @@ const FancyLink: React.FC<FancyLinkProps> = ({ href, children }) => {
       </Link>
       <div
         className={cn(styles.underline, { [styles.underlineVisible]: isHover })}
+        style={{ height: `${underlineHeight}px` }}
       />
     </div>
   )
