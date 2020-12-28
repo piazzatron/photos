@@ -1,11 +1,11 @@
-import { GetStaticPaths, GetStaticProps } from "next"
+import { GetStaticPaths, GetStaticProps } from 'next'
 import {
   getAllPosts,
   getAllPostsByYear,
   Post as PostType,
-} from "../../../../lib"
-import moment from "moment"
-import Post from "../../../../components/post/Post"
+} from '../../../../lib'
+import moment from 'moment'
+import Post from '../../../../components/post/Post'
 
 type MonthContainerProps = {
   posts: PostType[]
@@ -25,25 +25,25 @@ const MonthContainer = ({ posts }: MonthContainerProps) => {
 export default MonthContainer
 
 const MONTHS = [
-  "jan",
-  "feb",
-  "mar",
-  "apr",
-  "may",
-  "jun",
-  "jul",
-  "aug",
-  "sep",
-  "oct",
-  "nov",
-  "dec",
+  'jan',
+  'feb',
+  'mar',
+  'apr',
+  'may',
+  'jun',
+  'jul',
+  'aug',
+  'sep',
+  'oct',
+  'nov',
+  'dec',
 ]
 
 export const getStaticProps: GetStaticProps<
   { posts: PostType[] },
   { year: string; month: string }
 > = async (context) => {
-  if (context.params === undefined) throw new Error("no params")
+  if (context.params === undefined) throw new Error('no params')
   const yearNumber = parseInt(context.params.year, 10)
 
   const postsInYear = await getAllPostsByYear(yearNumber)

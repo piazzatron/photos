@@ -1,0 +1,37 @@
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+.headerTitle {
+  font-size: 36px;
+}
+.headerDate {
+  font-size: 15px;
+}
+
+.headerSeparator {
+  margin: 23px 0px 36px;
+  height: 0.5px;
+  background-color: black;
+  width: 26px;
+}
+
+.postContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 12px;
+}
+
+.postContent {
+  width: 100%;
+}
+
+.postContent  p {
+  width: 680px;
+  margin: 0px auto;
+  font-family: 'Montserrat' sans-serif;
+  font-size: 13px;
+}
