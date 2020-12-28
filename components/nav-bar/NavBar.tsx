@@ -1,8 +1,9 @@
-type NavBarProps = {}
 import styles from './NavBar.module.css'
 import utils from '../../styles/utils.module.css'
 import cn from 'classnames'
 import FancyLink from '../fancy-link/FancyLink'
+import { useContext } from 'react'
+import { navImageContext } from '../nav-image-context/NavImageContext'
 
 const SubPageButton = ({
   href,
@@ -54,9 +55,15 @@ const SubPages = ({
   )
 }
 
-const NavBar: React.FC<NavBarProps> = ({}) => {
+const NavBar: React.FC = () => {
+  const { photoDoesIntersect } = useContext(navImageContext)
   return (
-    <div className={styles.container}>
+    <div
+      className={cn([
+        styles.container,
+        { [styles.inverted]: photoDoesIntersect },
+      ])}
+    >
       <FancyLink href={'/journal'}>
         <div className={cn(styles.name, utils.playfair, utils.fontBlack)}>
           Michael Piazza
