@@ -31,6 +31,8 @@ module.exports = {
 
     // Default components should need to be typed
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    // Disable annoying no empty arrow fn
+    '@typescript-eslint/no-empty-function': 'off',
   },
   globals: {
     // Another next.js fix
