@@ -27,8 +27,9 @@ const NavImageContextProvider: React.FC = ({ children }) => {
     const listener = () => {
       let doesIntersect = false
       for (const ref of refs) {
-        const { top, bottom } = ref.getBoundingClientRect()
-        if (top < TEXT_TOP && bottom > TEXT_TOP) {
+        const { top, bottom, width, height } = ref.getBoundingClientRect()
+        const isLandscape = width > height * 1.2 // hack: account for landscape being significantly wider than tall
+        if (isLandscape && top < TEXT_TOP && bottom > TEXT_TOP) {
           doesIntersect = true
           break
         }
