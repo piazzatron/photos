@@ -19,3 +19,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@media only screen and (max-device-width: 480px) {
+  body {
+    overflow-x: hidden;
+  }
+}
