@@ -40,7 +40,6 @@
   width: 450px;
   font-size: 14px;
 }
-
 .headerRight > div:first-child {
   opacity: 0;
   animation: fadeUp 1.5s cubic-bezier(.18,.59,.44,.99) 0.5s 1 normal forwards;
@@ -89,4 +88,21 @@
 .wave {
   animation: waveAnim 2s cubic-bezier(.44,0,.48,1.01);
   transform-origin: 65% 65%;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .journalHeaderContainer {
+    margin: 15px 0px 50px;
+  }
+  .headerRight {
+    display: none;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .welcomeSpacer {
+    width: 30px;
+  }
 }

@@ -29,6 +29,7 @@ const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
           )}`.toLowerCase()}
           underlineHeight={1}
         >
+          {'🗓  '}
           {momentDate.format('MMM d, YYYY')}
         </FancyLink>
       </div>
