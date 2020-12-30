@@ -3,9 +3,10 @@ import Post from '../post/Post'
 import cn from 'classnames'
 import utils from '../../styles/utils.module.css'
 import Typist from 'react-typist'
+import { range } from 'lodash'
 
 import styles from './Journal.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FancyLink from '../fancy-link/FancyLink'
 
 type JournalProps = {
@@ -76,14 +77,38 @@ const JournalHeader = () => {
   )
 }
 
+const INITIAL_PAGE_COUNT = 3
+const BOTTOM_SCROLL_THRESHOLD_PIXELS = 300
+
+const useCurrentPage = (posts: PostType[]) => {
+  const [currentPage, setCurrentPage] = useState(INITIAL_PAGE_COUNT)
+
+  useEffect(() => {
+    const listener = () => {
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight - BOTTOM_SCROLL_THRESHOLD_PIXELS
+      ) {
+        setCurrentPage((p) => Math.min(p + 1, posts.length))
+      }
+    }
+    window.addEventListener('scroll', listener)
+    return () => {
+      window.removeEventListener('scroll', listener)
+    }
+  }, [])
+  return currentPage
+}
+
 const Journal = ({ posts }: JournalProps) => {
+  const currentPage = useCurrentPage(posts)
   return (
     <>
       <JournalHeader />
-
-      {posts.map((p) => (
-        <Post post={p} key={p.id} />
-      ))}
+      {range(currentPage).map((i) => {
+        const p = posts[i]
+        return <Post post={p} key={p.id} />
+      })}
     </>
   )
 }

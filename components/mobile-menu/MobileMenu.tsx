@@ -33,9 +33,8 @@ const Hamburger = ({
     },
   })
   const {photoDoesIntersect} = useContext(navImageContext)
-  console.log({photoDoesIntersect})
   return (
-    <div className={cn(styles.hamburgerContainer, {[styles.invertedHamburger]: photoDoesIntersect})} onClick={onClick}>
+    <div className={cn(styles.hamburgerContainer, {[styles.invertedHamburger]: photoDoesIntersect && !menuDisplayed})} onClick={onClick}>
       <animated.div
         style={{
           transform: y.interpolate((v) => `translateY(${(v as number) * 4}px)`),
