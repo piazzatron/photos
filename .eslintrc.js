@@ -33,6 +33,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     // Disable annoying no empty arrow fn
     '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
   globals: {
     // Another next.js fix

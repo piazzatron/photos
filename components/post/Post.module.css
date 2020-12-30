@@ -35,12 +35,28 @@
 .postContent  p {
   width: 680px;
   margin: 0px auto;
-  font-family: 'Montserrat' sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 13px;
 }
 
 @media only screen and (max-device-width: 480px) {
+  .headerTitle {
+    font-size: 24px;
+  }
+  .headerDate {
+    font-size: 11px;
+  }
+
   .postContainer {
     padding: 0px 0px;
+  }
+
+  .postContent p {
+    width: initial;
+    margin: 0px 14px;
+  }
+
+  .headerSeparator {
+    margin: 12px 0px 12px;
   }
 }

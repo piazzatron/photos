@@ -26,10 +26,15 @@ const NavImageContextProvider: React.FC = ({ children }) => {
   useEffect(() => {
     const listener = () => {
       let doesIntersect = false
+      const { width: screenWidth} = screen
+      const isMobile = screenWidth < 680
       for (const ref of refs) {
         const { top, bottom, width, height } = ref.getBoundingClientRect()
-        const isLandscape = width > height * 1.2 // hack: account for landscape being significantly wider than tall
-        if (isLandscape && top < TEXT_TOP && bottom > TEXT_TOP) {
+
+        // HACK: account for landscape being significantly wider than tall
+        // ONLY if we're not on mobile
+        const isMobileOrLandscape = isMobile || (width > height * 1.2)
+        if (isMobileOrLandscape && top < TEXT_TOP && bottom > TEXT_TOP) {
           doesIntersect = true
           break
         }

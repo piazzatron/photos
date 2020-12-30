@@ -5,7 +5,7 @@ import FancyLink from '../fancy-link/FancyLink'
 import { useContext } from 'react'
 import { navImageContext } from '../nav-image-context/NavImageContext'
 
-const SubPageButton = ({
+export const SubPageButton = ({
   href,
   isSelected,
   title,

@@ -1,0 +1,58 @@
+@media only screen and (min-device-width: 480px) {
+  .menuContainer {
+    display: none;
+  }
+}
+
+.menuContainer {
+  position: fixed;
+  top: 24px;
+  left: 8px;
+  z-index: 10;
+  margin: 8px;
+}
+.hamburgerContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 11;
+  cursor: pointer;
+}
+
+.bunOuter {
+  transform-origin: center;
+}
+
+.hamburgerBun {
+  background-color:black;
+  height: 2px;
+  border-radius: 2px;
+  width: 20px;
+  margin-bottom: 6px;
+  transform-origin: center;
+}
+
+.invertedHamburger .hamburgerBun{
+  background-color: white;
+}
+
+.fullScreenMenuContainer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fffffff3;
+  backdrop-filter: blur(25px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fullScreenMenuContainer > div:first-child {
+  margin-top: 30vh;
+}
+
+.fullScreenMenuContainer > div {
+  margin: 12px 0px;
+}
