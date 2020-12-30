@@ -1,4 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
+import Layout from '../../../components/layout/layout'
 import Post from '../../../components/post/Post'
 import { getAllPosts, getPostIDs } from '../../../lib'
 import { Post as PostType } from '../../../lib/index'
@@ -8,8 +10,14 @@ type PostPageProps = {
 }
 
 const PostPage = ({ post }: PostPageProps) => {
-  // TODO: add layout etc
-  return <Post post={post} />
+  return (
+    <Layout>
+      <Head>
+        <title>{post.title}</title>
+      </Head>
+      <Post post={post} isCompact />
+    </Layout>
+  )
 }
 
 export default PostPage

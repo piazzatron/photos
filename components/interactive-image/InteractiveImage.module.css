@@ -3,6 +3,7 @@
   transition: all 0.25s;
   max-width: 2048px;
   max-height: 1800px;
+  width: 100%;
   object-fit: contain;
   margin: 24px 0px;
   cursor: pointer;

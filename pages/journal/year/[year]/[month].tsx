@@ -6,19 +6,31 @@ import {
 } from '../../../../lib'
 import moment from 'moment'
 import Post from '../../../../components/post/Post'
+import Layout from '../../../../components/layout/layout'
+import Head from 'next/head'
+import TimePageHeader from '../../../../components/time-page-header/TimePageHeader'
 
 type MonthContainerProps = {
   posts: PostType[]
+  month: string
+  year: string
 }
 
-const MonthContainer = ({ posts }: MonthContainerProps) => {
-  if (!posts.length) return <div>Looks like no posts for that month...</div>
+const MonthContainer = ({ posts, month, year }: MonthContainerProps) => {
   return (
-    <div>
-      {posts.map((p) => (
-        <Post post={p} key={p.id} />
-      ))}
-    </div>
+    <Layout>
+      <Head>
+        <title>{`${month} - ${year}`}</title>
+      </Head>
+      <TimePageHeader text={`${month}, ${year}`} />
+      <div>
+        {posts.length ? (
+          posts.map((p) => <Post post={p} key={p.id} />)
+        ) : (
+          <div>Looks like no posts for that month...</div>
+        )}
+      </div>
+    </Layout>
   )
 }
 
@@ -58,6 +70,8 @@ export const getStaticProps: GetStaticProps<
   return {
     props: {
       posts: postsInMonth,
+      month: context.params.month,
+      year: context.params.year,
     },
   }
 }

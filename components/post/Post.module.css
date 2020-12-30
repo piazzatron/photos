@@ -29,7 +29,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
 }
 
 .postContent  p {
@@ -37,6 +37,13 @@
   margin: 0px auto;
   font-family: 'Montserrat', sans-serif;
   font-size: 13px;
+}
+
+/* .isCompact {} */
+
+.isCompact img {
+  max-width: 1280px !important;
+  max-height: 1000px !important;
 }
 
 @media only screen and (max-device-width: 480px) {

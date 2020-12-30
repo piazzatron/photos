@@ -10,6 +10,7 @@ import { useMemo } from 'react'
 
 type PostProps = {
   post: PostType
+  isCompact?: boolean
 }
 
 const components = { InteractiveImage }
@@ -43,9 +44,12 @@ const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
   )
 }
 
-const Post = ({ post }: PostProps) => {
+const Post = ({ post, isCompact = false }: PostProps) => {
+  console.log({ isCompact })
   return (
-    <div className={styles.postContainer}>
+    <div
+      className={cn(styles.postContainer, { [styles.isCompact]: isCompact })}
+    >
       <PostHeader post={post} />
       <div className={styles.postContent}>
         {hydrate(post.content, { components })}

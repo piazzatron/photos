@@ -1,0 +1,9 @@
+.contentContainer {
+  margin-top: 100px;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .contentContainer {
+    margin-top: 0px;
+  }
+}

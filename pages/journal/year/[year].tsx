@@ -2,19 +2,30 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { getAllPosts, getAllPostsByYear, Post as PostType } from '../../../lib'
 import moment from 'moment'
 import Post from '../../../components/post/Post'
+import Layout from '../../../components/layout/layout'
+import Head from 'next/head'
+import TimePageHeader from '../../../components/time-page-header/TimePageHeader'
 
 type YearContainerProps = {
   posts: PostType[]
+  year: string
 }
 
-const YearContainer = ({ posts }: YearContainerProps) => {
-  if (!posts.length) return <div>Looks like no posts for that year...</div>
+const YearContainer = ({ posts, year }: YearContainerProps) => {
   return (
-    <div>
-      {posts.map((p) => (
-        <Post post={p} key={p.id} />
-      ))}
-    </div>
+    <Layout>
+      <Head>
+        <title>{year}</title>
+      </Head>
+      <TimePageHeader text={year} />
+      <div>
+        {posts.length ? (
+          posts.map((p) => <Post post={p} key={p.id} />)
+        ) : (
+          <div>Looks like no posts for that year...</div>
+        )}
+      </div>
+    </Layout>
   )
 }
 
@@ -33,6 +44,7 @@ export const getStaticProps: GetStaticProps<
   return {
     props: {
       posts,
+      year: context.params.year,
     },
   }
 }
