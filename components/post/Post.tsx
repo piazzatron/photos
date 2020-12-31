@@ -23,21 +23,21 @@ const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
   const momentDate = useMemo(() => moment(date), [date])
   return (
     <div className={styles.headerContainer}>
-      <div className={cn(styles.headerDate, utils.montserrat, utils.fontLight)}>
+      <div className={cn(styles.headerTitle, utils.playfair, utils.fontBold)}>
+        <FancyLink href={`/journal/posts/${post.id}`}>{post.title}</FancyLink>
+      </div>
+      <div
+        className={cn(styles.headerDate, utils.montserrat, utils.fontSemiBold)}
+      >
         <FancyLink
           href={`/journal/year/${momentDate.year()}/${momentDate.format(
             'MMM',
           )}`.toLowerCase()}
-          underlineHeight={1}
+          underlineHeight={0}
         >
           {'🗓  '}
           {momentDate.format('MMM d, YYYY')}
         </FancyLink>
-      </div>
-      <div
-        className={cn(styles.headerTitle, utils.playfair, utils.fontRegular)}
-      >
-        <FancyLink href={`/journal/posts/${post.id}`}>{post.title}</FancyLink>
       </div>
       <div className={styles.headerSeparator}></div>
     </div>

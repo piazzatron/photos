@@ -8,13 +8,18 @@
   font-size: 36px;
 }
 .headerDate {
-  font-size: 15px;
+  margin-top: 12px;
+  font-size: 17px;
+}
+
+.headerDate a {
+  color: #a98080;
 }
 
 .headerSeparator {
-  margin: 23px 0px 36px;
+  margin: 32px 0px 36px;
   height: 0.5px;
-  background-color: #e1e1e1;
+  background-color:#c0c0c0;
   width: 26px;
 }
 
@@ -23,6 +28,7 @@
   flex-direction: column;
   align-items: center;
   padding: 0px 12px;
+  margin-bottom: 84px;
 }
 
 .postContent {
@@ -34,9 +40,9 @@
 
 .postContent  p {
   width: 680px;
-  margin: 0px auto;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
+  margin: 36px auto;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 16px;
 }
 
 /* .isCompact {} */
