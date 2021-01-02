@@ -18,6 +18,7 @@ const JournalHeader = () => {
 
   return (
     <div className={styles.journalHeaderContainer}>
+      <div className={styles.backgroundBlob} />
       <div className={styles.headerLeft}>
         <div className={cn([utils.playfair, utils.fontBold, styles.welcome])}>
           <div className={styles.welcomeSpacer} />

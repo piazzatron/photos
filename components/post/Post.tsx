@@ -35,7 +35,7 @@ const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
           )}`.toLowerCase()}
           underlineHeight={0}
         >
-          {`- ${momentDate.format('MMM d, YYYY')} -`}
+          {`${momentDate.format('MMM d, YYYY')}`}
         </FancyLink>
       </div>
       <div className={styles.headerSeparator}></div>

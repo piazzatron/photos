@@ -3,7 +3,21 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: 0px 0px 80px;
+  margin: 0px auto 80px;
+  position: relative;
+  width: 636px;
+  height: 174px;
+  padding: 18px;
+}
+
+.backgroundBlob {
+  background-color: #FAFAFA;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  transform: rotateZ(-1deg);
 }
 
 .headerLeft {
@@ -43,6 +57,7 @@
   color: #454545;
   position: relative;
   top: 10px;
+  width: 188px;
 }
 .headerRight > div {
   margin-bottom: 8px;
