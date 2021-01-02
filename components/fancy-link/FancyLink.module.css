@@ -7,11 +7,13 @@
 }
 
 .colored {
-  color: #9c5454;
+  color: #ff6b6b !important;
+  opacity: 0.8;
 }
 
 .container:hover, .container:hover * {
   color: #ff6b6b !important;
+  opacity: 1;
 }
 
 .container:active {

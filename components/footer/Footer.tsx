@@ -3,7 +3,6 @@ import styles from './Footer.module.css'
 import Twitter from '../../public/twitter.svg'
 import Instagram from '../../public/instagram.svg'
 import Mail from '../../public/mail.svg'
-import Image from 'next/image'
 import cn from 'classnames'
 import utils from '../../styles/utils.module.css'
 

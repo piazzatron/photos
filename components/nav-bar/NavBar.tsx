@@ -18,7 +18,7 @@ export const SubPageButton = ({
   inverted: boolean
 }) => {
   return (
-    <FancyLink href={href}>
+    <FancyLink href={href} underlineHeight={2}>
       <div
         className={cn(utils.montserrat, {
           [styles.subPageButtonUnselected]: !isSelected,
