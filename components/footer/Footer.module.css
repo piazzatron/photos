@@ -5,7 +5,7 @@
   flex-direction: row;
   align-items: center;
   border-top: 1px solid #ECECEC;
-  margin: 100px auto 0px;
+  margin: 64px auto 0px;
   font-size: 13px;
   position: relative;
 }
@@ -22,7 +22,7 @@
 .right {
   margin-left: auto;
   margin-right: 20px;
-  width: 100px;
+  text-align: right;
 }
 
 .middle {
@@ -50,12 +50,25 @@
 
 
 .twitterContainer svg {
-  width: 30px;
+  width: 22px;
 }
 
-.container svg path {
+.mail svg {
+  width: 22px;
+}
+
+.instagramContainer svg path {
   fill: #525252;
 }
+
+.twitterContainer:hover svg, .mail:hover svg {
+  stroke: #ff6b6b !important;
+}
+
+.instagramContainer:hover path {
+  fill: #ff6b6b !important;
+}
+
 
 .hoverLink {
   transform: scale(1);
@@ -66,4 +79,34 @@
 .hoverLink:hover {
   opacity: 0.85;
   transform: scale(1.1);
+}
+
+.github {
+  opacity: 0.4;
+  margin-left: 6px;
+}
+
+.innerRight {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rightText {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .container {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .right {
+    display: none;
+  }
+  .middle {
+    left: 65%;
+  }
 }

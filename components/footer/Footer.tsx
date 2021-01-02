@@ -2,6 +2,7 @@ import FancyLink from '../fancy-link/FancyLink'
 import styles from './Footer.module.css'
 import Twitter from '../../public/twitter.svg'
 import Instagram from '../../public/instagram.svg'
+import Mail from '../../public/mail.svg'
 import Image from 'next/image'
 import cn from 'classnames'
 import utils from '../../styles/utils.module.css'
@@ -21,7 +22,7 @@ const Footer = () => {
     <div className={cn(styles.container, utils.montserrat, utils.fontRegular)}>
       <div className={styles.left}>
         <FancyLink href="/" underlineHeight={1}>
-          Home
+          home
         </FancyLink>
       </div>
       <div className={styles.middle}>
@@ -37,7 +38,7 @@ const Footer = () => {
         </div>
         <div className={styles.mail}>
           <HoverLink href="mailto:michael.piazza@hey.com">
-            <Image src="/mail.png" height={24} width={24} />
+            <Mail />
           </HoverLink>
         </div>
       </div>
@@ -46,7 +47,17 @@ const Footer = () => {
           href="https://github.com/piazzatron/photos"
           underlineHeight={0}
         >
-          This site hand built with ❤️
+          <div className={styles.innerRight}>
+            <div className={styles.rightText}>
+              hand built and designed <br /> © michael piazza, 2020
+            </div>
+            <img
+              className={styles.github}
+              src="/github.png"
+              height={24}
+              width={24}
+            />
+          </div>
         </FancyLink>
       </div>
     </div>
