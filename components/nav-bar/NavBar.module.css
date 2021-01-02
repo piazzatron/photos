@@ -1,5 +1,6 @@
 .container {
   height: 80px;
+  width: 100%;
   max-width: 2048px;
   margin: 0px auto;
   display: flex;
@@ -10,6 +11,34 @@
   position: fixed;
   top: 0;
   z-index: 10;
+}
+
+.instagram {
+  margin-left: auto;
+  transition: all 0.15s ease-in-out;
+  transform: scale(1);
+  transform-origin: center;
+}
+
+.instagram:hover {
+  transform: scale(1.05);
+}
+
+.instagram:hover path{
+  fill: #ff6b6b !important;
+}
+
+.inverted path {
+  fill: white !important;
+}
+
+.instagram svg {
+  width: 24px;
+}
+
+.instagram path {
+  transition: all 0.15s ease-in-out;
+  fill: #d2d2d2;
 }
 
 .mobileContainer {
@@ -56,7 +85,12 @@
 
 
 .subPageButtonUnselected {
-  color: #A7A7A7 !important;
+  color: #A7A7A7;
+}
+
+.subPageButtonUnselected.inverted {
+  color: white;
+  opacity: 0.7;
 }
 
 @media only screen and (max-device-width: 480px) {
@@ -73,4 +107,13 @@
   .name {
     font-size: 15px;
   }
+
+  .instagram {
+    display: initial;
+    position: absolute;
+    margin-left: auto;
+    right: 16px;
+    top: 27px;
+  }
+
 }

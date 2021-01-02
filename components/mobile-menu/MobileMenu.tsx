@@ -2,7 +2,11 @@ import { useRef, useState, useEffect, useContext } from 'react'
 import { useSpring, animated, useTransition } from 'react-spring'
 import styles from './MobileMenu.module.css'
 import { SubPageButton } from '../nav-bar/NavBar'
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from 'body-scroll-lock'
 import { navImageContext } from '../nav-image-context/NavImageContext'
 import cn from 'classnames'
 
@@ -32,9 +36,14 @@ const Hamburger = ({
       clamp: true,
     },
   })
-  const {photoDoesIntersect} = useContext(navImageContext)
+  const { photoDoesIntersect } = useContext(navImageContext)
   return (
-    <div className={cn(styles.hamburgerContainer, {[styles.invertedHamburger]: photoDoesIntersect && !menuDisplayed})} onClick={onClick}>
+    <div
+      className={cn(styles.hamburgerContainer, {
+        [styles.invertedHamburger]: photoDoesIntersect && !menuDisplayed,
+      })}
+      onClick={onClick}
+    >
       <animated.div
         style={{
           transform: y.interpolate((v) => `translateY(${(v as number) * 4}px)`),
@@ -88,14 +97,14 @@ const WrappedButton = ({
     },
     from: {
       transform: 'translateY(10px)',
-      opacity: 0
+      opacity: 0,
     },
     // @ts-ignore
     enter: (_) => async (next) => {
       await new Promise((resolve) => setTimeout(resolve, delay))
       await next({
         transform: 'translateY(0)',
-        opacity: 1
+        opacity: 1,
       })
     },
   })
@@ -166,6 +175,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
       enableBodyScroll(menuRef.current!)
     }
   }, [menuDisplayed])
+
+  // Cleanup after unmount (if you clicked a link etc)
+  useEffect(
+    () => () => {
+      clearAllBodyScrollLocks()
+    },
+    [],
+  )
 
   return (
     <div className={styles.menuContainer} ref={menuRef}>
