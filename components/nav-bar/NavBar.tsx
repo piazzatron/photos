@@ -10,12 +10,12 @@ export const SubPageButton = ({
   href,
   isSelected,
   title,
-  inverted
+  inverted = false
 }: {
   href: string
   isSelected: boolean
   title: string
-  inverted: boolean
+  inverted?: boolean
 }) => {
   return (
     <FancyLink href={href} underlineHeight={2}>
