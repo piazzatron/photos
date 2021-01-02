@@ -45,7 +45,6 @@ const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
 }
 
 const Post = ({ post, isCompact = false }: PostProps) => {
-  console.log({ isCompact })
   return (
     <div
       className={cn(styles.postContainer, { [styles.isCompact]: isCompact })}
@@ -54,6 +53,19 @@ const Post = ({ post, isCompact = false }: PostProps) => {
       <div className={styles.postContent}>
         {hydrate(post.content, { components })}
       </div>
+      {isCompact && (
+        <FancyLink href="/journal" underlineHeight={2}>
+          <div
+            className={cn(
+              styles.backButton,
+              utils.montserrat,
+              utils.fontRegular,
+            )}
+          >
+            {'< journal'}
+          </div>
+        </FancyLink>
+      )}
     </div>
   )
 }
