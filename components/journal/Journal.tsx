@@ -1,4 +1,4 @@
-import { getAllPosts, getAllPostsByYear, Post as PostType } from '../../lib'
+import { Post as PostType } from '../../lib'
 import Post from '../post/Post'
 import cn from 'classnames'
 import utils from '../../styles/utils.module.css'
@@ -7,7 +7,6 @@ import { range } from 'lodash'
 
 import styles from './Journal.module.css'
 import { useEffect, useState } from 'react'
-import FancyLink from '../fancy-link/FancyLink'
 
 type JournalProps = {
   posts: PostType[]
@@ -25,7 +24,7 @@ const JournalHeader = () => {
           <div className={styles.wave}>👋</div>
           <div className={styles.welcomeText}>
             <Typist
-              avgTypingDelay={150}
+              avgTypingDelay={75}
               stdTypingDelay={10}
               startDelay={100}
               cursor={{ hideWhenDone: true, hideWhenDoneDelay: 0 }}
@@ -44,12 +43,12 @@ const JournalHeader = () => {
         >
           {topDidType && (
             <Typist
-              avgTypingDelay={60}
+              avgTypingDelay={30}
               stdTypingDelay={10}
               cursor={{ blink: true, hideWhenDone: true, hideWhenDoneDelay: 0 }}
               onTypingDone={() => setBottomDidType(true)}
             >
-              to the photojournal.
+              to my photojournal.
             </Typist>
           )}
         </div>
@@ -58,18 +57,9 @@ const JournalHeader = () => {
       <div className={cn(styles.headerRight, utils.montserrat)}>
         {bottomDidType && (
           <>
-            <div>{`it's a cozy stream of my life starting in 2020`}</div>
-            <div>
-              {`captured mostly on Fuji `}
-              <FancyLink underlineHeight={1} colored href="">
-                {'X-Pro3 '}
-              </FancyLink>{' '}
-              {'& '}
-              <FancyLink underlineHeight={1} colored href="">
-                X100F{' '}
-              </FancyLink>{' '}
-              {`(so far).`}
-            </div>
+            <div>{`this is a little attempt`}</div>
+            <div>{`to note & recall today`}</div>
+            <div>{`while it's not yet tomorrow`}</div>
           </>
         )}
       </div>

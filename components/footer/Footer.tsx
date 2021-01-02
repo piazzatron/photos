@@ -47,9 +47,7 @@ const Footer = () => {
           underlineHeight={0}
         >
           <div className={styles.innerRight}>
-            <div className={styles.rightText}>
-              hand built and designed <br /> © michael piazza, 2020
-            </div>
+            <div className={styles.rightText}>© michael piazza, 2021</div>
             <img
               className={styles.github}
               src="/github.png"

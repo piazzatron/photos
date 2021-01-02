@@ -27,7 +27,7 @@ const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
         <FancyLink href={`/journal/posts/${post.id}`}>{post.title}</FancyLink>
       </div>
       <div
-        className={cn(styles.headerDate, utils.montserrat, utils.fontSemiBold)}
+        className={cn(styles.headerDate, utils.montserrat, utils.fontRegular)}
       >
         <FancyLink
           href={`/journal/year/${momentDate.year()}/${momentDate.format(
@@ -35,8 +35,7 @@ const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
           )}`.toLowerCase()}
           underlineHeight={0}
         >
-          {'🗓  '}
-          {momentDate.format('MMM d, YYYY')}
+          {`- ${momentDate.format('MMM d, YYYY')} -`}
         </FancyLink>
       </div>
       <div className={styles.headerSeparator}></div>
