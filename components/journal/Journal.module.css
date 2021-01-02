@@ -118,6 +118,7 @@
 @media only screen and (max-device-width: 480px) {
   .journalHeaderContainer {
     margin: 15px 0px 50px;
+    width: initial;
   }
   .headerRight {
     display: none;
