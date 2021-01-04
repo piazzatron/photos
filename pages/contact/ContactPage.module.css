@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 48px 58px;
+  padding: 38px 18px;
   flex: 0;
 }
 
@@ -91,7 +91,7 @@
   padding: 12px 20px;
   font-size: 15px;
   cursor: pointer;
-  margin: 18px auto 0px;
+  margin: 24px auto 0px;
 }
 
 .container button:hover:not(:disabled) {
@@ -106,4 +106,46 @@
 .container button:active {
   transform: scale(0.98);
   transition: all 0.07s ease-out;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .container {
+    flex-direction: column-reverse;
+    padding: 30px 0px 45px;
+  }
+
+  .left {
+    margin: 24px 0px;
+  }
+
+  .rightContainer {
+    margin-bottom: 18px;
+  }
+  .container img {
+    height: unset;
+    width: 85vw;
+  }
+
+  .title {
+    font-size: 23px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .emoji {
+    font-size: 30px;
+    left: -54px;
+  }
+
+  .container textArea {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .background {
+    left: -5px;
+    right: -5px;
+  }
 }

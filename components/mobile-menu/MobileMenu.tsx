@@ -160,6 +160,12 @@ const FullScreenMenu = () => {
         href="/about"
         delay={150}
       />
+      <WrappedButton
+        title={'contact'}
+        isSelected={selectedPage === 'contact'}
+        href="/contact"
+        delay={225}
+      />
     </animated.div>
   )
 }

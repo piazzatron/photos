@@ -27,7 +27,7 @@ const StandardPageWrapper: React.FC<StandardPageWrapperProps> = ({
         >
           {title}
         </div>
-        <div className={styles.divider} />
+        {/* <div className={styles.divider} /> */}
         {children}
       </div>
     </Layout>
