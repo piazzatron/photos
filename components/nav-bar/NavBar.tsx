@@ -37,7 +37,7 @@ const SubPages = ({
   selectedPage,
   inverted
 }: {
-  selectedPage?: 'journal' | 'work' | 'about',
+  selectedPage?: 'journal' | 'work' | 'about' | 'contact',
   inverted: boolean
 }) => {
   return (
@@ -58,6 +58,12 @@ const SubPages = ({
         title={'about'}
         isSelected={selectedPage === 'about'}
         href="/about"
+        inverted={inverted}
+      />
+      <SubPageButton
+        title={'contact'}
+        isSelected={selectedPage === 'contact'}
+        href="/contact"
         inverted={inverted}
       />
     </div>
