@@ -5,12 +5,13 @@ import FancyLink from '../fancy-link/FancyLink'
 import { useContext } from 'react'
 import { navImageContext } from '../nav-image-context/NavImageContext'
 import Instagram from '../../public/instagram.svg'
+import { useRouter } from 'next/dist/client/router'
 
 export const SubPageButton = ({
   href,
   isSelected,
   title,
-  inverted = false
+  inverted = false,
 }: {
   href: string
   isSelected: boolean
@@ -24,7 +25,7 @@ export const SubPageButton = ({
           [styles.subPageButtonUnselected]: !isSelected,
           [utils.fontRegular]: !isSelected,
           [utils.fontBold]: isSelected,
-          [styles.inverted]: inverted
+          [styles.inverted]: inverted,
         })}
       >
         {title}
@@ -35,9 +36,9 @@ export const SubPageButton = ({
 
 const SubPages = ({
   selectedPage,
-  inverted
+  inverted,
 }: {
-  selectedPage?: 'journal' | 'work' | 'about' | 'contact',
+  selectedPage?: 'journal' | 'work' | 'about' | 'contact'
   inverted: boolean
 }) => {
   return (
@@ -72,23 +73,25 @@ const SubPages = ({
 
 const NavBar: React.FC = () => {
   const { photoDoesIntersect } = useContext(navImageContext)
+  const { pathname } = useRouter()
+  const inverted = pathname === '/journal' && photoDoesIntersect
+
   return (
-    <div
-      className={cn([
-        styles.container,
-        { [styles.inverted]: photoDoesIntersect },
-      ])}
-    >
+    <div className={cn([styles.container, { [styles.inverted]: inverted }])}>
       <FancyLink href={'/journal'}>
         <div className={cn(styles.name, utils.playfair, utils.fontBlack)}>
           Michael Piazza
         </div>
       </FancyLink>
       <div className={styles.subpageLinks}>
-        <SubPages selectedPage={'journal'} inverted={photoDoesIntersect}/>
+        <SubPages selectedPage={'journal'} inverted={inverted} />
       </div>
-      <div className={cn(styles.instagram, { [styles.inverted]: photoDoesIntersect})}>
-        <a href='https://instagram.com/piazzatron'>
+      <div
+        className={cn(styles.instagram, {
+          [styles.inverted]: photoDoesIntersect,
+        })}
+      >
+        <a href="https://instagram.com/piazzatron">
           <Instagram />
         </a>
       </div>
