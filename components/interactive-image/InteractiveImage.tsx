@@ -4,9 +4,10 @@ import styles from './InteractiveImage.module.css'
 
 type InteractiveImageProps = {
   image_id: string
+  belowFold: boolean
 }
 
-const MAX_WIDTH = 2048
+const MAX_WIDTH = 1800
 // Where we start showing the images full width for mobile (this is a guess rn)
 const FULL_WIDTH_BREAKPOINT = 1000
 
@@ -17,11 +18,14 @@ const makeImageURL = (image_id: string, width?: number) =>
     width ? `c_scale,q_100,w_${width}/` : ''
   }piazza.photos/${image_id}.jpg`
 
-const InteractiveImage = ({ image_id }: InteractiveImageProps) => {
+const InteractiveImage = ({
+  image_id,
+  belowFold = false,
+}: InteractiveImageProps) => {
   const { addRef } = useContext(navImageContext)
   const callBackRef = useCallback((element: HTMLImageElement | null) => {
     if (element) {
-      addRef(element)
+      addRef(element, belowFold)
     }
   }, [])
   const src = makeImageURL(image_id, MAX_WIDTH)
@@ -33,7 +37,7 @@ const InteractiveImage = ({ image_id }: InteractiveImageProps) => {
   const sizes = `
   (max-width: ${FULL_WIDTH_BREAKPOINT}px) 100vw,
   (max-width: ${MAX_WIDTH}px) 96vw,
-  2048px;
+  1800px;
   `
 
   return (

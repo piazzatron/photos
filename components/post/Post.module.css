@@ -3,17 +3,23 @@
   flex-direction: column;
   text-align: center;
   align-items: center;
+  margin: 64px 0px;
 }
 .headerTitle {
-  font-size: 36px;
+  font-size: 42px;
 }
+
+.headerTitle a {
+  color: #272727 !important;
+}
+
 .headerDate {
   margin: 4px 0px 6px;
   font-size: 17px;
 }
 
 .headerDate a {
-  color: #444;
+  color: #464545;
 }
 
 .headerSeparator {
@@ -28,7 +34,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0px 12px;
   margin-bottom: 64px;
 }
 
@@ -41,9 +46,19 @@
 
 .postContent  p {
   width: 680px;
-  margin: 36px auto;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 16px;
+  font-size: 21px;
+  line-height: 32px;
+}
+
+/* Handle top and bottom of paragraphs btwn images */
+
+.postContent img + p {
+  margin-top: 64px;
+}
+
+.postContent p + img {
+  margin-top: 64px;
 }
 
 /* .isCompact {} */
@@ -54,8 +69,11 @@
 }
 
 .backButton {
-  color: #B6B6B6 !important;
-  margin-top: 16px;
+  margin-top: 48px;
+}
+
+.backButton a {
+  color: #4C4C4C;
 }
 
 @media only screen and (max-device-width: 480px) {

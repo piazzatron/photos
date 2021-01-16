@@ -6,6 +6,7 @@ import { readFileSync } from 'fs'
 import moment from 'moment'
 import renderToString from 'next-mdx-remote/render-to-string'
 import InteractiveImage from '../components/interactive-image/InteractiveImage'
+import BelowTheFold from '../components/post/BelowTheFold'
 
 type FrontMatterData = {
   title: string
@@ -30,6 +31,7 @@ const recursivelyGetFiles = (dir: string): string[] => {
 
 const components = {
   InteractiveImage,
+  BelowTheFold,
 }
 
 export const getAllPosts = async (): Promise<Post[]> => {

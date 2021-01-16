@@ -5,7 +5,7 @@ const TEXT_TOP = 60
 
 export const navImageContext = React.createContext({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  addRef: (_: HTMLElement) => {},
+  addRef: (_: HTMLElement, _2: boolean) => {},
   photoDoesIntersect: false,
 })
 
@@ -16,24 +16,40 @@ export const navImageContext = React.createContext({
  * images, we can binary search it later
  */
 const NavImageContextProvider: React.FC = ({ children }) => {
-  const refs = useRef<HTMLElement[]>([]).current
-  const addRef = useCallback((ref: HTMLElement) => {
-    refs.push(ref)
+  const refs = useRef<{ ref: HTMLElement; belowFold: boolean }[]>([]).current
+  const addRef = useCallback((ref: HTMLElement, belowFold: boolean) => {
+    refs.push({ ref, belowFold })
   }, refs)
 
-  const [photoDoesIntersect, setPhotoDoesIntersect] = useState(false)
+  const [photoDoesIntersect, setPhotoDoesIntersect] = useState(true)
 
   useEffect(() => {
     const listener = () => {
       let doesIntersect = false
-      const { width: screenWidth} = screen
+      const { width: screenWidth } = screen
       const isMobile = screenWidth < 680
-      for (const ref of refs) {
-        const { top, bottom, width, height } = ref.getBoundingClientRect()
+
+      // account for header bit
+      if (window.scrollY < 320) {
+        if (!photoDoesIntersect) {
+          setPhotoDoesIntersect(true)
+        }
+        return
+      }
+
+      for (const { ref, belowFold } of refs) {
+        const rec = ref.getBoundingClientRect()
+        const { top, width, height } = rec
+        let { bottom } = rec
+
+        // If we're below the fold, pretend we're only 200px tall
+        if (belowFold) {
+          bottom = top + 200
+        }
 
         // HACK: account for landscape being significantly wider than tall
         // ONLY if we're not on mobile
-        const isMobileOrLandscape = isMobile || (width > height * 1.2)
+        const isMobileOrLandscape = isMobile || width > height * 1.2
         if (isMobileOrLandscape && top < TEXT_TOP && bottom > TEXT_TOP) {
           doesIntersect = true
           break
