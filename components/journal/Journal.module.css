@@ -3,9 +3,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: 0px auto 80px;
+  margin: 0px auto 160px;
   position: relative;
-  width: 636px;
   height: 174px;
   padding: 18px;
 }
@@ -30,19 +29,19 @@
 }
 
 .welcomeSpacer {
-  width: 60px;
+  width: 6px;
 }
 .welcome {
-  font-size: 42px;
+  font-size: 52px;
   display: flex;
-  color: #d58d8d;
+  color: white;
 }
 
 .welcomeSubtext {
   font-size: 28px;
   height: 35px;
   margin-left: 8px;
-  color: #474747
+  color: white;
 }
 
 .welcomeText {
@@ -54,10 +53,10 @@
   flex-direction: column;
   justify-content: center;
   font-size: 14px;
-  color: #454545;
+  color: white;
   position: relative;
   top: 10px;
-  width: 188px;
+  width: 286px;
 }
 .headerRight > div {
   margin-bottom: 8px;
@@ -77,10 +76,40 @@
 }
 
 .divider {
-  width: 1px;
+  width: 3px;
   height: 108px;
-  background-color: #E1E1E1;
+  background-color: white;
   margin: 0px 24px;
+}
+
+.outerContainer {
+
+}
+
+.movingPhotoContainer {
+  position: absolute;
+  left: -10px;
+  right: -10px;
+  top: -10px;
+  height: 380px;
+  transform: rotateZ(0.8deg);
+  background-color: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translate3d(0px, 0px, 0px);
+  }
+  100% {
+    transform: translate3d(-300px, -200px, 0px);
+  }
+}
+
+.movingPhotoContainer img {
+  animation: moveUp 120s linear;
+  filter: brightness(60%);
+  width: 120%;
 }
 
 @keyframes fadeUp {
