@@ -7,7 +7,6 @@ const BelowTheFold: React.FC = ({ children }) => {
 
   // Is this gonna work? What about time pages etc?
   const showChildren = router?.pathname !== '/journal'
-  console.log({ showChildren })
   if (showChildren) {
     return <>{children}</>
   }

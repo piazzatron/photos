@@ -18,13 +18,15 @@ const MovingPhotoHeader: React.FC<MovingPhotoHeaderProps> = ({
   brightness,
 }) => {
   return (
-    <div
-      className={styles.movingPhotoContainer}
-      style={{
-        filter: `brightness(${brightness})`,
-      }}
-    >
-      <img src={urls[0]} />
+    <div className={styles.outerContainer}>
+      <div
+        className={styles.movingPhotoContainer}
+        style={{
+          filter: `brightness(${brightness})`,
+        }}
+      >
+        <img src={urls[0]} />
+      </div>
     </div>
   )
 }
@@ -114,9 +116,9 @@ const JournalHeader = () => {
         <div className={cn(styles.headerRight, utils.montserrat)}>
           {bottomDidType && (
             <>
-              <div>{`documenting the photography journey /`}</div>
+              <div>{`documenting the photography journey`}</div>
               <div>{`oversharing the life journey`}</div>
-              <div>{`(mostly on Fuji X-Pro3 and X100F)`}</div>
+              <div>{`mostly on Fuji X-Pro3 and X100F`}</div>
             </>
           )}
         </div>
