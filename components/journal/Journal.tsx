@@ -7,6 +7,7 @@ import { range } from 'lodash'
 
 import styles from './Journal.module.css'
 import { useEffect, useState } from 'react'
+import EmailSubscribe from '../email-subscribe/EmailSubscribe'
 
 type MovingPhotoHeaderProps = {
   urls: string[]
@@ -152,13 +153,23 @@ const useCurrentPage = (posts: PostType[]) => {
 
 const Journal = ({ posts }: JournalProps) => {
   const currentPage = useCurrentPage(posts)
+  const items = range(currentPage).map((i) => {
+    const p = posts[i]
+    return <Post post={p} key={p.id} />
+  })
+
+  items.splice(
+    1,
+    0,
+    <div className={styles.subscribeContainer}>
+      <EmailSubscribe />
+    </div>,
+  )
+
   return (
     <>
       <JournalHeader />
-      {range(currentPage).map((i) => {
-        const p = posts[i]
-        return <Post post={p} key={p.id} />
-      })}
+      {items}
     </>
   )
 }

@@ -62,7 +62,7 @@ const Post = ({ post, isCompact = false }: PostProps) => {
           href={isCompact ? '/journal' : `/journal/posts/${post.id}`}
           underlineHeight={2}
         >
-          {isCompact ? '< journal' : 'full post >'}
+          {isCompact ? '< Journal' : '> See Full Post'}
         </FancyLink>
       </div>
     </div>

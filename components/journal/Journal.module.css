@@ -83,18 +83,29 @@
 }
 
 .outerContainer {
-
+  position: absolute;
+  height: 380px;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
 }
 
 .movingPhotoContainer {
   position: absolute;
   left: -10px;
   right: -10px;
-  top: -10px;
+  top: -20px;
   height: 380px;
   transform: rotateZ(0.8deg);
   background-color: rgba(0, 0, 0, 0.3);
-  overflow: hidden;
+}
+
+.subscribeContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 24px 0px;
 }
 
 @keyframes moveUp {

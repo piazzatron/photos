@@ -3,6 +3,9 @@ import StandardPageWrapper from '../../components/standard-page-wrapper/Standard
 import styles from './ContactPage.module.css'
 import utils from '../../styles/utils.module.css'
 import cn from 'classnames'
+import EmailSubscribe from '../../components/email-subscribe/EmailSubscribe'
+import Button from '../../components/button/Button'
+import Input, { TextArea } from '../../components/input/Input'
 
 const ContactPage = () => {
   const [message, setMessage] = useState('')
@@ -51,7 +54,7 @@ const ContactPage = () => {
             className={cn(styles.subtitle, utils.montserrat, utils.fontRegular)}
           >{`Leave a note and say hello`}</div>
           <form onSubmit={handleSubmit}>
-            <textarea
+            <TextArea
               className={styles.bodyInput}
               placeholder={'Your note'}
               value={message}
@@ -59,7 +62,7 @@ const ContactPage = () => {
               required
               name="message"
             />
-            <input
+            <Input
               className={styles.emailInput}
               type="email"
               placeholder={'Your Email (optional)'}
@@ -67,14 +70,16 @@ const ContactPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               name="email"
             />
-            <button
+            <Button
               type="submit"
               disabled={serverState.sending || serverState.didSend}
+              className={styles.button}
             >
               {serverState.didSend ? 'Thanks for sending your note!' : 'Send'}
-            </button>
+            </Button>
           </form>
         </div>
+        <EmailSubscribe />
       </div>
     </StandardPageWrapper>
   )

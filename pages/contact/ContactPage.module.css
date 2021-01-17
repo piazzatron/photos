@@ -20,6 +20,9 @@
   padding: 38px 18px;
   flex: 0;
 }
+.button {
+  margin: 24px auto 0px;
+}
 
 .emoji {
   position: absolute;
@@ -51,62 +54,6 @@
   color: #686868;
 }
 
-.container input, .container textArea {
-  border: 1px solid #C6C6C6;
-  border-radius: 2px;
-  padding: 8px;
-  font-size: 15px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-.container input::placeholder, .container textarea::placeholder {
-  color: #D2D2D2;
-}
-
-.container input:focus, .container textarea:focus {
-  outline: none !important;
-  box-shadow: 0px 0px 0px 2px #bcbdff;
-}
-
-.container input {
-  width: 100%;
-}
-
-.container textArea {
-  margin-bottom: 12px;
-  min-height: 160px;
-  min-width: 380px;
-}
-
-.container button {
-  background-color: black;
-  display: block;
-  border-radius: 2px;
-  transform: scale(1);
-  transition: all 0.15s ease-in-out;
-  border: 0px;
-  color: white;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  padding: 12px 20px;
-  font-size: 15px;
-  cursor: pointer;
-  margin: 24px auto 0px;
-}
-
-.container button:hover:not(:disabled) {
-  transform: scale(1.05);
-}
-
-.container button:disabled {
-  background-color: #D9D9D9;
-  cursor: initial;
-}
-
-.container button:active {
-  transform: scale(0.98);
-  transition: all 0.07s ease-out;
-}
 
 @media only screen and (max-device-width: 480px) {
   .container {
@@ -137,11 +84,6 @@
   .emoji {
     font-size: 30px;
     left: -54px;
-  }
-
-  .container textArea {
-    min-width: unset;
-    width: 100%;
   }
 
   .background {
