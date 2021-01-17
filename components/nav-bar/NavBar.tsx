@@ -38,7 +38,7 @@ const SubPages = ({
   selectedPage,
   inverted,
 }: {
-  selectedPage?: 'journal' | 'work' | 'about' | 'contact'
+  selectedPage: string
   inverted: boolean
 }) => {
   return (
@@ -84,7 +84,7 @@ const NavBar: React.FC = () => {
         </div>
       </FancyLink>
       <div className={styles.subpageLinks}>
-        <SubPages selectedPage={'journal'} inverted={inverted} />
+        <SubPages selectedPage={pathname.substr(1)} inverted={inverted} />
       </div>
       <div
         className={cn(styles.instagram, {
