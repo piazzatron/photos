@@ -21,15 +21,7 @@ const StandardPageWrapper: React.FC<StandardPageWrapperProps> = ({
           <title>{headTitle}</title>
         </Head>
       </div>
-      <div className={styles.container}>
-        <div
-          className={cn(styles.titleContainer, utils.playfair, utils.fontBold)}
-        >
-          {title}
-        </div>
-        {/* <div className={styles.divider} /> */}
-        {children}
-      </div>
+      <div className={styles.container}>{children}</div>
     </Layout>
   )
 }

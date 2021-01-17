@@ -6,10 +6,12 @@ import cn from 'classnames'
 import EmailSubscribe from '../../components/email-subscribe/EmailSubscribe'
 import Button from '../../components/button/Button'
 import Input, { TextArea } from '../../components/input/Input'
+import Label from '../../components/label/Label'
 
 const ContactPage = () => {
   const [message, setMessage] = useState('')
   const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
   const [serverState, setServerState] = useState({
     sending: false,
     didSend: false,
@@ -42,45 +44,60 @@ const ContactPage = () => {
 
   return (
     <StandardPageWrapper title={'Contact'} headTitle={'Contact'}>
-      <div className={styles.container}>
-        <img className={styles.left} src={'/shy.jpg'} />
+      <>
         <div className={styles.rightContainer}>
-          <div className={styles.background} />
           <div className={cn(styles.title, utils.playfair, utils.fontBold)}>
-            {`Don't be a stranger`}
-            <div className={styles.emoji}>📬</div>
+            Say hello!
           </div>
           <div
             className={cn(styles.subtitle, utils.montserrat, utils.fontRegular)}
-          >{`Leave a note and say hello`}</div>
+          >
+            {"I'll try to get back as soon as I can"}
+          </div>
+        </div>
+        <div className={styles.form}>
           <form onSubmit={handleSubmit}>
-            <TextArea
-              className={styles.bodyInput}
-              placeholder={'Your note'}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              required
-              name="message"
-            />
-            <Input
-              className={styles.emailInput}
-              type="email"
-              placeholder={'Your Email (optional)'}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              name="email"
-            />
+            <Label>
+              Your note
+              <TextArea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
+                name="message"
+              />
+            </Label>
+            <Label>
+              Your email (optional)
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                name="email"
+              />
+            </Label>
+            <Label>
+              Your Name (optional)
+              <Input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                name="name"
+              />
+            </Label>
             <Button
               type="submit"
-              disabled={serverState.sending || serverState.didSend}
+              disabled={
+                !message.length || serverState.sending || serverState.didSend
+              }
               className={styles.button}
             >
               {serverState.didSend ? 'Thanks for sending your note!' : 'Send'}
             </Button>
           </form>
         </div>
+        <div className={styles.divider} />
         <EmailSubscribe />
-      </div>
+      </>
     </StandardPageWrapper>
   )
 }

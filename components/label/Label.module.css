@@ -1,0 +1,15 @@
+.container {}
+
+.container label {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 28px;
+  font-size: 11px;
+}
+
+.container * {
+  color: #808080 !important;
+}
+
+.container label *:first-child {
+  margin-bottom: 7px !important;
+}
