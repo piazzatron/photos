@@ -43,7 +43,7 @@ const ContactPage = () => {
   }
 
   return (
-    <StandardPageWrapper title={'Contact'} headTitle={'Contact'}>
+    <StandardPageWrapper headTitle={'Contact'}>
       <>
         <div className={styles.rightContainer}>
           <div className={cn(styles.title, utils.playfair, utils.fontBold)}>

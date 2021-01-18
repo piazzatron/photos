@@ -1,9 +1,5 @@
 .container {}
 
-.disabled {
-  opacity: 0.5
-}
-
 .container button {
   background-color: black;
   display: block;
