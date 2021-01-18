@@ -81,6 +81,14 @@
     margin-top: 26px;
   }
 
+  .postContent img + p {
+    margin-top: 26px;
+  }
+
+  .postContent p + img {
+    margin-top: 26px;
+  }
+
   .headerTitle {
     font-size: 24px;
   }
@@ -94,11 +102,11 @@
   }
 
   .postContent p {
-    width: initial;
-    margin: 0px 14px;
-    margin: 36px 18px;
+    width: 100%;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 14px;
+    font-size: 17px;
+    line-height: 28px;
+    padding: 0px 24px;
   }
 
   .headerSeparator {

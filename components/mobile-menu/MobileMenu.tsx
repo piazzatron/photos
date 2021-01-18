@@ -9,8 +9,7 @@ import {
 } from 'body-scroll-lock'
 import { navImageContext } from '../nav-image-context/NavImageContext'
 import cn from 'classnames'
-
-type MobileMenuProps = {}
+import { useRouter } from 'next/dist/client/router'
 
 const Hamburger = ({
   onClick,
@@ -37,10 +36,13 @@ const Hamburger = ({
     },
   })
   const { photoDoesIntersect } = useContext(navImageContext)
+  const router = useRouter()
+  const rootPath = router.pathname?.split('/')[1] ?? ''
+  const shouldInvert = photoDoesIntersect && rootPath === 'journal'
   return (
     <div
       className={cn(styles.hamburgerContainer, {
-        [styles.invertedHamburger]: photoDoesIntersect && !menuDisplayed,
+        [styles.invertedHamburger]: shouldInvert && !menuDisplayed,
       })}
       onClick={onClick}
     >
@@ -170,7 +172,7 @@ const FullScreenMenu = () => {
   )
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({}) => {
+const MobileMenu: React.FC = () => {
   const [menuDisplayed, setMenuDisplayed] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 

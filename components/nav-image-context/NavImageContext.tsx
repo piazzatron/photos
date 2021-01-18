@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import React from 'react'
+import { useRouter } from 'next/dist/client/router'
 
 const TEXT_TOP = 60
 
@@ -23,14 +24,17 @@ const NavImageContextProvider: React.FC = ({ children }) => {
 
   const [photoDoesIntersect, setPhotoDoesIntersect] = useState(true)
 
+  const router = useRouter()
+  const pathname = router.pathname
+
   useEffect(() => {
     const listener = () => {
       let doesIntersect = false
       const { width: screenWidth } = screen
       const isMobile = screenWidth < 680
 
-      // account for header bit
-      if (window.scrollY < 320) {
+      // account for header bit but only if we're on the journal page
+      if (pathname === '/journal' && window.scrollY < 320) {
         if (!photoDoesIntersect) {
           setPhotoDoesIntersect(true)
         }
@@ -63,7 +67,7 @@ const NavImageContextProvider: React.FC = ({ children }) => {
     return () => {
       document.removeEventListener('scroll', listener)
     }
-  }, [photoDoesIntersect])
+  }, [photoDoesIntersect, pathname])
 
   return (
     <navImageContext.Provider value={{ addRef, photoDoesIntersect }}>
