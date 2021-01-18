@@ -162,7 +162,7 @@ const Journal = ({ posts }: JournalProps) => {
     1,
     0,
     <div className={styles.subscribeContainer}>
-      <EmailSubscribe />
+      <EmailSubscribe key="subscribe" />
     </div>,
   )
 

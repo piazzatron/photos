@@ -61,7 +61,7 @@ const AboutPage = () => {
   })
   return (
     <StandardPageWrapper headTitle="About">
-      <div className={styles.mainView}>
+      <div className={cn(styles.mainView, utils.montserrat)}>
         <img src="/me.jpg" />
         <div className={styles.text}>
           <p>Hi!</p>
