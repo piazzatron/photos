@@ -6,7 +6,7 @@ import utils from '../../styles/utils.module.css'
 
 const WorkPage = () => {
   return (
-    <StandardPageWrapper headTitle="Work" title="Work">
+    <StandardPageWrapper headTitle="Work">
       <div className={styles.container}>
         <img src="/construction.jpg" className={styles.image} />
         <div className={styles.rightContainer}>
