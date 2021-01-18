@@ -22,43 +22,54 @@ const NavImageContextProvider: React.FC = ({ children }) => {
     refs.push({ ref, belowFold })
   }, refs)
 
-  const [photoDoesIntersect, setPhotoDoesIntersect] = useState(true)
-
   const router = useRouter()
   const pathname = router.pathname
+  const { width: screenWidth } =
+    typeof screen === 'undefined' ? { width: 0 } : screen
 
+  const getDoesIntersect = useCallback(() => {
+    if (!screenWidth) return false
+    const isMobile = screenWidth < 680
+
+    // account for header bit but only if we're on the journal page
+    if (pathname === '/journal' && window.scrollY < 320) {
+      return true
+    }
+
+    for (const { ref, belowFold } of refs) {
+      const rec = ref.getBoundingClientRect()
+      const { top, width, height } = rec
+      let { bottom } = rec
+
+      // If we're below the fold, pretend we're only 200px tall
+      if (belowFold) {
+        bottom = top + 200
+      }
+
+      // HACK: account for landscape being significantly wider than tall
+      // ONLY if we're not on mobile
+      const isMobileOrLandscape = isMobile || width > height * 1.2
+      if (isMobileOrLandscape && top < TEXT_TOP && bottom > TEXT_TOP) {
+        return true
+      }
+    }
+    return false
+  }, [pathname, screenWidth])
+
+  const [photoDoesIntersect, setPhotoDoesIntersect] = useState(true)
+
+  // Run it once at the beginning, or on page change
+  useEffect(() => {
+    const doesIntersect = getDoesIntersect()
+    if (doesIntersect !== photoDoesIntersect) {
+      setPhotoDoesIntersect(doesIntersect)
+    }
+  }, [pathname])
+
+  // Run it on scroll
   useEffect(() => {
     const listener = () => {
-      let doesIntersect = false
-      const { width: screenWidth } = screen
-      const isMobile = screenWidth < 680
-
-      // account for header bit but only if we're on the journal page
-      if (pathname === '/journal' && window.scrollY < 320) {
-        if (!photoDoesIntersect) {
-          setPhotoDoesIntersect(true)
-        }
-        return
-      }
-
-      for (const { ref, belowFold } of refs) {
-        const rec = ref.getBoundingClientRect()
-        const { top, width, height } = rec
-        let { bottom } = rec
-
-        // If we're below the fold, pretend we're only 200px tall
-        if (belowFold) {
-          bottom = top + 200
-        }
-
-        // HACK: account for landscape being significantly wider than tall
-        // ONLY if we're not on mobile
-        const isMobileOrLandscape = isMobile || width > height * 1.2
-        if (isMobileOrLandscape && top < TEXT_TOP && bottom > TEXT_TOP) {
-          doesIntersect = true
-          break
-        }
-      }
+      const doesIntersect = getDoesIntersect()
       if (doesIntersect !== photoDoesIntersect) {
         setPhotoDoesIntersect(doesIntersect)
       }
@@ -67,7 +78,7 @@ const NavImageContextProvider: React.FC = ({ children }) => {
     return () => {
       document.removeEventListener('scroll', listener)
     }
-  }, [photoDoesIntersect, pathname])
+  }, [photoDoesIntersect, pathname, screenWidth])
 
   return (
     <navImageContext.Provider value={{ addRef, photoDoesIntersect }}>
