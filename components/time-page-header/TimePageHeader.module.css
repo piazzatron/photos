@@ -11,7 +11,7 @@
   padding: 12px;
 }
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-width: 480px) {
   .container {
     margin-top: 12px;
     margin-bottom: 24px;

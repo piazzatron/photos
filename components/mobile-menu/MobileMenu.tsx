@@ -14,9 +14,11 @@ import { useRouter } from 'next/dist/client/router'
 const Hamburger = ({
   onClick,
   menuDisplayed,
+  rootPath,
 }: {
   onClick: () => void
   menuDisplayed: boolean
+  rootPath: string
 }) => {
   const { r } = useSpring({
     r: menuDisplayed ? 1 : 0,
@@ -36,8 +38,6 @@ const Hamburger = ({
     },
   })
   const { photoDoesIntersect } = useContext(navImageContext)
-  const router = useRouter()
-  const rootPath = router.pathname?.split('/')[1] ?? ''
   const shouldInvert = photoDoesIntersect && rootPath === 'journal'
   return (
     <div
@@ -128,7 +128,7 @@ const WrappedButton = ({
   )
 }
 
-const FullScreenMenu = () => {
+const FullScreenMenu = ({ rootPath }: { rootPath: string }) => {
   const { opacity } = useSpring({
     opacity: 1,
     from: { opacity: 0 },
@@ -138,7 +138,6 @@ const FullScreenMenu = () => {
       clamp: true,
     },
   })
-  const selectedPage = 'journal' as string
   return (
     <animated.div
       className={styles.fullScreenMenuContainer}
@@ -146,25 +145,25 @@ const FullScreenMenu = () => {
     >
       <WrappedButton
         title={'journal'}
-        isSelected={selectedPage === 'journal'}
+        isSelected={rootPath === 'journal'}
         href="/journal"
         delay={0}
       />
       <WrappedButton
         title={'work'}
-        isSelected={selectedPage === 'work'}
+        isSelected={rootPath === 'work'}
         href="/work"
         delay={75}
       />
       <WrappedButton
         title={'about'}
-        isSelected={selectedPage === 'about'}
+        isSelected={rootPath === 'about'}
         href="/about"
         delay={150}
       />
       <WrappedButton
         title={'contact'}
-        isSelected={selectedPage === 'contact'}
+        isSelected={rootPath === 'contact'}
         href="/contact"
         delay={225}
       />
@@ -175,6 +174,9 @@ const FullScreenMenu = () => {
 const MobileMenu: React.FC = () => {
   const [menuDisplayed, setMenuDisplayed] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+
+  const router = useRouter()
+  const rootPath = router.pathname?.split('/')[1] ?? ''
 
   useEffect(() => {
     if (menuDisplayed) {
@@ -197,8 +199,9 @@ const MobileMenu: React.FC = () => {
       <Hamburger
         onClick={() => setMenuDisplayed(!menuDisplayed)}
         menuDisplayed={menuDisplayed}
+        rootPath={rootPath}
       />
-      {menuDisplayed && <FullScreenMenu />}
+      {menuDisplayed && <FullScreenMenu rootPath={rootPath} />}
     </div>
   )
 }

@@ -76,7 +76,7 @@
   color: #4C4C4C;
 }
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-width: 480px) {
   .headerContainer {
     margin-top: 26px;
   }
