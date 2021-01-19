@@ -3,5 +3,9 @@
   publish = "out"
 
 [[redirects]]
-from = "/"
-to = "/journal"
+  from = "/"
+  to = "/journal"
+
+[[redirects]]
+  from = "/index.html"
+  to = "/journal"
