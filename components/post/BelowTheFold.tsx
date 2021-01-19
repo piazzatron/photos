@@ -11,13 +11,15 @@ const BelowTheFold: React.FC = ({ children }) => {
     return <>{children}</>
   }
   return (
-    <div className={styles.preview}>
-      {React.Children.map(children, (child, i) => {
-        // TODO: fix this ignore
-        // @ts-ignore
-        if (i === 0) return React.cloneElement(child, { belowFold: true })
-        return null
-      })}
+    <div className={styles.container}>
+      <div className={styles.preview}>
+        {React.Children.map(children, (child, i) => {
+          // TODO: fix this ignore
+          // @ts-ignore
+          if (i === 0) return React.cloneElement(child, { belowFold: true })
+          return null
+        })}
+      </div>
       <div className={styles.gradient} />
     </div>
   )
