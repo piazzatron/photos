@@ -21,7 +21,7 @@ const Footer = () => {
     <div className={cn(styles.container, utils.montserrat, utils.fontRegular)}>
       <div className={styles.left}>
         <FancyLink href="/" underlineHeight={1}>
-          home
+          Home
         </FancyLink>
       </div>
       <div className={styles.middle}>

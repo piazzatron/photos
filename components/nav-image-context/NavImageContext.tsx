@@ -17,13 +17,22 @@ export const navImageContext = React.createContext({
  * images, we can binary search it later
  */
 const NavImageContextProvider: React.FC = ({ children }) => {
-  const refs = useRef<{ ref: HTMLElement; belowFold: boolean }[]>([]).current
-  const addRef = useCallback((ref: HTMLElement, belowFold: boolean) => {
-    refs.push({ ref, belowFold })
-  }, refs)
+  const refs = useRef<{ ref: HTMLElement; belowFold: boolean }[]>([])
+  const addRef = useCallback(
+    (ref: HTMLElement, belowFold: boolean) => {
+      refs.current.push({ ref, belowFold })
+    },
+    [refs.current],
+  )
 
   const router = useRouter()
   const pathname = router.pathname
+
+  // Nuke the refs array when we navigate to a new page
+  useEffect(() => {
+    refs.current = []
+  }, [pathname])
+
   const { width: screenWidth } =
     typeof screen === 'undefined' ? { width: 0 } : screen
 
@@ -40,7 +49,7 @@ const NavImageContextProvider: React.FC = ({ children }) => {
       return true
     }
 
-    for (const { ref, belowFold } of refs) {
+    for (const { ref, belowFold } of refs.current) {
       const rec = ref.getBoundingClientRect()
       const { top, width, height } = rec
       let { bottom } = rec

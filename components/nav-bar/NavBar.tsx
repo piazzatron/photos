@@ -88,7 +88,7 @@ const NavBar: React.FC = () => {
       </div>
       <div
         className={cn(styles.instagram, {
-          [styles.inverted]: photoDoesIntersect,
+          [styles.inverted]: inverted,
         })}
       >
         <a href="https://instagram.com/piazzatron">

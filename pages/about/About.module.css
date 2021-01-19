@@ -1,11 +1,13 @@
 
-.title {
-
-}
+.title {}
 
 .mainView {
   display: flex;
   align-items: center;
+}
+
+.mainView p {
+  color: #4c4c4c;
 }
 
 .mainView img {

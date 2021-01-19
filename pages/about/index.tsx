@@ -15,9 +15,12 @@ const FlippyText = () => {
   const [currentFunction, setCurrentFunction] = useState(0)
   // @ts-ignore
   const t = useTransition(currentFunction, (item) => item, {
-    from: { y: -1 },
-    enter: { y: 0 },
-    leave: { y: 1 },
+    from: { y: -1, opacity: 1 },
+    enter: { y: 0, opacity: 1 },
+    // @ts-ignore
+    leave: (item) => async (next) => {
+      await next({ y: 1, opacity: 0, config: { clamp: true, duration: 0 } })
+    },
     config: { ...config.wobbly, tension: 220 },
   })
 
@@ -31,23 +34,23 @@ const FlippyText = () => {
   }, [currentFunction])
 
   return (
-    <div className={styles.flippyContainer}>
+    <>
       {t.map(({ item, key, props }) => (
-        <animated.div
+        <animated.span
           key={key}
           style={{
             display: 'inline-block',
-            position: 'absolute',
+            opacity: props.opacity,
             // @ts-ignore
             transform: props.y.interpolate(
               (y: any) => `translateY(${y * -1 * 20}px)`,
             ),
           }}
         >
-          {MY_FUNCTIONS[item]}
-        </animated.div>
+          {` ${MY_FUNCTIONS[item]}`}
+        </animated.span>
       ))}
-    </div>
+    </>
   )
 }
 
@@ -115,7 +118,7 @@ const AboutPage = () => {
           </p>
         </div>
       </div>
-      <div className={styles.footnote}>- Michael</div>
+      <div className={cn(styles.footnote, utils.montserrat)}>- Michael</div>
     </StandardPageWrapper>
   )
 }
