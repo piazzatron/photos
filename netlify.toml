@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build && npm run export"
+  command = "npm run build && npm run export && npm run copy-redirects"
   publish = "out"
 
 [[redirects]]
