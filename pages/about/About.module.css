@@ -39,3 +39,18 @@
 .animatedAge {
   display: inline;
 }
+
+@media only screen and (max-width: 480px) {
+  .mainView {
+    flex-direction: column-reverse;
+  }
+
+  .mainView img {
+    margin: 24px 0px;
+  }
+
+  .text {
+    width: initial;
+    padding: 0px 24px;
+  }
+}

@@ -24,3 +24,9 @@ a {
     overflow-x: hidden;
   }
 }
+
+input, textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

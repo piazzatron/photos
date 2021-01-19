@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import { AppProps } from 'next/app'
 import NavImageContextProvider from '../components/nav-image-context/NavImageContext'
 import Head from 'next/head'
+import StateProvider from '../components/state-provider/StateProvider'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -13,7 +14,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <NavImageContextProvider>
-        <Component {...pageProps} />
+        <StateProvider>
+          <Component {...pageProps} />
+        </StateProvider>
       </NavImageContextProvider>
     </>
   )

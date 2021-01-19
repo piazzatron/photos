@@ -6,8 +6,9 @@ import Typist from 'react-typist'
 import { range } from 'lodash'
 
 import styles from './Journal.module.css'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import EmailSubscribe from '../email-subscribe/EmailSubscribe'
+import { stateContext } from '../state-provider/StateProvider'
 
 type MovingPhotoHeaderProps = {
   urls: string[]
@@ -133,9 +134,13 @@ const BOTTOM_SCROLL_THRESHOLD_PIXELS = 300
 
 const useCurrentPage = (posts: PostType[]) => {
   const [currentPage, setCurrentPage] = useState(INITIAL_PAGE_COUNT)
+  const { setJournalScroll } = useContext(stateContext)
 
   useEffect(() => {
     const listener = () => {
+      console.log('GONNA SET')
+      console.log(window.scrollY)
+      setJournalScroll(window.scrollY)
       if (
         window.innerHeight + window.scrollY >=
         document.body.offsetHeight - BOTTOM_SCROLL_THRESHOLD_PIXELS
@@ -151,7 +156,18 @@ const useCurrentPage = (posts: PostType[]) => {
   return currentPage
 }
 
+const useSetInitialScroll = () => {
+  const { journalScroll } = useContext(stateContext)
+  console.log('SETTING INITIAL SCROLL')
+  console.log({ journalScroll })
+  useEffect(() => {
+    window.scroll(0, journalScroll)
+  }, [])
+}
+
 const Journal = ({ posts }: JournalProps) => {
+  useSetInitialScroll()
+
   const currentPage = useCurrentPage(posts)
   const items = range(currentPage).map((i) => {
     const p = posts[i]
