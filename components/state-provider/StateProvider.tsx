@@ -8,7 +8,6 @@ export const stateContext = React.createContext({
 const NavImageContextProvider: React.FC = ({ children }) => {
   const journalScroll = useRef(0)
   const setJournalScroll = useCallback((scroll: number) => {
-    console.log({ scroll })
     journalScroll.current = scroll
   }, [])
 

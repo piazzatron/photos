@@ -138,9 +138,12 @@ const useCurrentPage = (posts: PostType[]) => {
 
   useEffect(() => {
     const listener = () => {
-      console.log('GONNA SET')
-      console.log(window.scrollY)
-      setJournalScroll(window.scrollY)
+      // If scrollY is zero, don't set it bc when we navigate
+      // off of the journal page, it briefly resets at zero
+      const { scrollY } = window
+      if (scrollY) {
+        setJournalScroll(window.scrollY)
+      }
       if (
         window.innerHeight + window.scrollY >=
         document.body.offsetHeight - BOTTOM_SCROLL_THRESHOLD_PIXELS
@@ -158,8 +161,6 @@ const useCurrentPage = (posts: PostType[]) => {
 
 const useSetInitialScroll = () => {
   const { journalScroll } = useContext(stateContext)
-  console.log('SETTING INITIAL SCROLL')
-  console.log({ journalScroll })
   useEffect(() => {
     window.scroll(0, journalScroll)
   }, [])

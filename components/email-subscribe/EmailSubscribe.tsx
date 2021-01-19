@@ -40,7 +40,7 @@ const EmailSubscribe = () => {
   }, [])
   return (
     <div className={cn(styles.container, utils.montserrat)}>
-      <div className={cn(styles.title, utils.montserrat, utils.fontSemiBold)}>
+      <div className={cn(styles.title, utils.montserrat, utils.fontRegular)}>
         <Send />
         {serverState.didSend
           ? "You're subscribed!"
