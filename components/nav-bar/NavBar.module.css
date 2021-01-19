@@ -18,6 +18,7 @@
   transition: all 0.15s ease-in-out;
   transform: scale(1);
   transform-origin: center;
+  z-index: 11;
 }
 
 .instagram:hover {
