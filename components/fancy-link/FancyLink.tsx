@@ -10,7 +10,7 @@ type FancyLinkProps = {
 }
 
 const FancyLink: React.FC<FancyLinkProps> = ({
-  underlineHeight = 4,
+  underlineHeight = 2.5,
   href,
   children,
   colored = false,

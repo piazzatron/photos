@@ -30,7 +30,7 @@
   left: 0px;
   right: 0px;
   /* background-color: #00fff7; */
-  background-color: black;
+  background-color: #ff6b6b !important;
   transform: translate3d(0px, 0px, 0px) scale(0, 0.9);
   transform-origin: center;
   transition: all 0.21s cubic-bezier(.21,-0.02,.35,1);
