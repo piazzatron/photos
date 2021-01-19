@@ -32,7 +32,11 @@ const NavImageContextProvider: React.FC = ({ children }) => {
     const isMobile = screenWidth < 680
 
     // account for header bit but only if we're on the journal page
-    if (pathname === '/journal' && window.scrollY < 320) {
+    // threshold depends on whether mobile or not
+    if (
+      pathname === '/journal' &&
+      (isMobile ? window.scrollY < 256 : window.scrollY < 320)
+    ) {
       return true
     }
 

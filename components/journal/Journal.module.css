@@ -157,8 +157,10 @@
 
 @media only screen and (max-width: 480px) {
   .journalHeaderContainer {
-    margin: 15px 0px 50px;
+    margin: 0px 0px 50px;
+    padding-top: 0px;
     width: initial;
+    top: -10px;
   }
   .headerRight {
     display: none;
@@ -168,7 +170,15 @@
     display: none;
   }
 
-  .welcomeSpacer {
-    width: 30px;
+  .outerContainer {
+    height: 300px;
   }
+
+  .movingPhotoContainer {
+    height: 300px;
+    top: -5px;
+    overflow: hidden;
+    transform: rotateZ(-1.5deg);
+  }
+
 }

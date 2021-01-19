@@ -9,26 +9,57 @@ import styles from './Journal.module.css'
 import { useContext, useEffect, useState } from 'react'
 import EmailSubscribe from '../email-subscribe/EmailSubscribe'
 import { stateContext } from '../state-provider/StateProvider'
+import { animated, config, useTransition } from 'react-spring'
 
 type MovingPhotoHeaderProps = {
-  urls: string[]
+  ids: string[]
   brightness: number
 }
 
+const makeCurrentURL = (id: string, isMobile: boolean) => {
+  const width = isMobile ? 1280 : 2048
+  return `https://res.cloudinary.com/dlf6ppjiw/image/upload/c_scale,q_78,w_${width}/piazza.photos/${id}.jpg`
+}
+
+const MOVING_PHOTO_DURATION_MS = 7500
+
 const MovingPhotoHeader: React.FC<MovingPhotoHeaderProps> = ({
-  urls,
+  ids,
   brightness,
 }) => {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const handle = setTimeout(() => {
+      setIndex((index) => (index + 1) % ids.length)
+    }, MOVING_PHOTO_DURATION_MS)
+    return () => {
+      clearTimeout(handle)
+    }
+  }, [index])
+
+  const transitions = useTransition(index, (item) => item, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    config: config.slow,
+  })
+  const isMobile =
+    typeof window === 'undefined' ? false : window.screen.width < 680
   return (
     <div className={styles.outerContainer}>
-      <div
-        className={styles.movingPhotoContainer}
-        style={{
-          filter: `brightness(${brightness})`,
-        }}
-      >
-        <img src={urls[0]} />
-      </div>
+      {transitions.map(({ item, key, props }) => (
+        <animated.div
+          className={styles.movingPhotoContainer}
+          key={key}
+          style={{
+            filter: `brightness(${brightness})`,
+            ...props,
+          }}
+        >
+          <img src={makeCurrentURL(ids[item], isMobile)} />
+        </animated.div>
+      ))}
     </div>
   )
 }
@@ -63,9 +94,7 @@ const JournalHeader = () => {
     <>
       <MovingPhotoHeader
         brightness={brightness}
-        urls={[
-          'https://res.cloudinary.com/dlf6ppjiw/image/upload/c_scale,q_100,w_2048/piazza.photos/DSCF4435_xljnkt.jpg',
-        ]}
+        ids={['DSCF4435_xljnkt', 'smokestack_pwn4ek']}
       />
       <div
         className={styles.journalHeaderContainer}
