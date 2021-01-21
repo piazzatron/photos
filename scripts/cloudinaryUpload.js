@@ -35,7 +35,9 @@ const uploadAll = async () => {
       throw e
     }
   }
-  console.log(`Uploaded: ${res}`)
+  res.forEach(r =>
+    console.log(`<InteractiveImage image_id="${r}" />`)
+  )
 }
 
 uploadAll()

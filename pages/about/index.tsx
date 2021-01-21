@@ -9,7 +9,7 @@ const BoldText: React.FC = ({ children }) => {
   return <div className={cn(utils.fontBold, styles.boldText)}>{children}</div>
 }
 
-const MY_FUNCTIONS = ['software engineer', 'photographer', 'human']
+const MY_FUNCTIONS = ['software engineer', 'photographer', 'human boy']
 
 const FlippyText = () => {
   const [currentFunction, setCurrentFunction] = useState(0)
