@@ -11,11 +11,13 @@ import BelowTheFold from '../components/post/BelowTheFold'
 type FrontMatterData = {
   title: string
   date: string
+  location?: string
 }
 
 export type Post = {
   id: string
   title: string
+  location?: string
   date: string
   content: Source
 }

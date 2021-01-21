@@ -16,10 +16,18 @@
 .headerDate {
   margin: 4px 0px 6px;
   font-size: 17px;
+  display: flex;
 }
 
 .headerDate a {
   color: #464545;
+}
+
+.slash {
+  color: #e7e7e7;
+  font-size: 22px;
+  top: -3px;
+  position: relative;
 }
 
 .headerSeparator {
@@ -118,6 +126,11 @@
   .backButton {
     margin-top: 36px;
     font-size: 14px;
+  }
+
+  .slash {
+    font-size: 15px;
+    top: -1px;
   }
 
 }

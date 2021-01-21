@@ -40,6 +40,12 @@ const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
         >
           {`${momentDate.format('MMM d, YYYY')}`}
         </FancyLink>
+        {post.location && (
+          <>
+            <span className={styles.slash}>&nbsp; / &nbsp;</span>
+            {post.location}
+          </>
+        )}
       </div>
       <div className={styles.headerSeparator}></div>
     </div>
