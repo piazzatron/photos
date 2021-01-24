@@ -1,11 +1,3 @@
 [build]
-  command = "npm run build && npm run export && npm run copy-redirects"
+  command = "npm run build && npm run export"
   publish = "out"
-
-[[redirects]]
-  from = "/"
-  to = "/journal"
-
-[[redirects]]
-  from = "/index.html"
-  to = "/journal"

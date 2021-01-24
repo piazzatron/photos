@@ -45,8 +45,8 @@ const SubPages = ({
     <div className={styles.subPages}>
       <SubPageButton
         title={'journal'}
-        isSelected={selectedPage === 'journal'}
-        href="/journal"
+        isSelected={selectedPage === ''}
+        href="/"
         inverted={inverted}
       />
       <SubPageButton
@@ -74,11 +74,12 @@ const SubPages = ({
 const NavBar: React.FC = () => {
   const { photoDoesIntersect } = useContext(navImageContext)
   const { pathname } = useRouter()
-  const inverted = pathname === '/journal' && photoDoesIntersect
+  const inverted =
+    (pathname === '/' || pathname === '/journal') && photoDoesIntersect
 
   return (
     <div className={cn([styles.container, { [styles.inverted]: inverted }])}>
-      <FancyLink href={'/journal'}>
+      <FancyLink href={'/'}>
         <div className={cn(styles.name, utils.playfair, utils.fontBlack)}>
           Michael Piazza
         </div>

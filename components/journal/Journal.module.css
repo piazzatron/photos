@@ -99,6 +99,7 @@
   height: 380px;
   transform: rotateZ(0.8deg);
   background-color: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 }
 
 .subscribeContainer {

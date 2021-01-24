@@ -1,9 +1,10 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
-import Layout from '../../../components/layout/layout'
-import Post from '../../../components/post/Post'
-import { getAllPosts, getPostIDs } from '../../../lib'
-import { Post as PostType } from '../../../lib/index'
+import Layout from '../../../../components/layout/layout'
+import Post from '../../../../components/post/Post'
+import { getAllPosts, getPostIDs } from '../../../../lib'
+import { Post as PostType } from '../../../../lib/index'
+import moment from 'moment'
 
 type PostPageProps = {
   post: PostType
@@ -36,9 +37,20 @@ export const getStaticProps: GetStaticProps<
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const ids = await getPostIDs()
+  const posts = await getAllPosts()
+  const paths = posts.map((p) => {
+    const d = moment(p.date)
+    return {
+      params: {
+        year: d.year().toString(),
+        month: d.format('MMM').toLowerCase(),
+        id: p.id,
+      },
+    }
+  })
+
   return {
-    paths: ids,
+    paths,
     fallback: false /* TODO: I probably want a fallback*/,
   }
 }

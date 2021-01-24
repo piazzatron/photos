@@ -38,7 +38,8 @@ const Hamburger = ({
     },
   })
   const { photoDoesIntersect } = useContext(navImageContext)
-  const shouldInvert = photoDoesIntersect && rootPath === 'journal'
+  const shouldInvert =
+    photoDoesIntersect && (rootPath === '' || rootPath === 'journal')
   return (
     <div
       className={cn(styles.hamburgerContainer, {
@@ -145,8 +146,8 @@ const FullScreenMenu = ({ rootPath }: { rootPath: string }) => {
     >
       <WrappedButton
         title={'journal'}
-        isSelected={rootPath === 'journal'}
-        href="/journal"
+        isSelected={rootPath === ''}
+        href="/"
         delay={0}
       />
       <WrappedButton

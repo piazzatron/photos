@@ -1,14 +1,10 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import {
-  getAllPosts,
-  getAllPostsByYear,
-  Post as PostType,
-} from '../../../../lib'
+import { getAllPosts, getAllPostsByYear, Post as PostType } from '../../../lib'
 import moment from 'moment'
-import Post from '../../../../components/post/Post'
-import Layout from '../../../../components/layout/layout'
+import Post from '../../../components/post/Post'
+import Layout from '../../../components/layout/layout'
 import Head from 'next/head'
-import TimePageHeader from '../../../../components/time-page-header/TimePageHeader'
+import TimePageHeader from '../../../components/time-page-header/TimePageHeader'
 
 type MonthContainerProps = {
   posts: PostType[]

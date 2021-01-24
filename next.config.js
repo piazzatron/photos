@@ -10,13 +10,6 @@ const config = {
     });
 
     return config;
-  },
-  async redirects() {
-    return [{
-      source: '/',
-      destination: '/journal',
-      permanent: true
-    }]
   }
 }
 module.exports = withMDX(config)

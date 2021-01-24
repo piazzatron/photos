@@ -43,7 +43,7 @@ const NavImageContextProvider: React.FC = ({ children }) => {
     // account for header bit but only if we're on the journal page
     // threshold depends on whether mobile or not
     if (
-      pathname === '/journal' &&
+      pathname === '/' &&
       (isMobile ? window.scrollY < 256 : window.scrollY < 320)
     ) {
       return true
