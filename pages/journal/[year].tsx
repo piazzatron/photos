@@ -17,7 +17,7 @@ const YearContainer = ({ posts, year }: YearContainerProps) => {
       <Head>
         <title>{year}</title>
       </Head>
-      <TimePageHeader text={year} />
+      <TimePageHeader>{year}</TimePageHeader>
       <div>
         {posts.length ? (
           posts.map((p) => <Post post={p} key={p.id} />)

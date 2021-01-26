@@ -50,7 +50,6 @@ const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
           </>
         )}
       </div>
-      <div className={styles.headerSeparator}></div>
     </div>
   )
 }

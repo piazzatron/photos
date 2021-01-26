@@ -5,32 +5,9 @@ import Post from '../../../components/post/Post'
 import Layout from '../../../components/layout/layout'
 import Head from 'next/head'
 import TimePageHeader from '../../../components/time-page-header/TimePageHeader'
+import FancyLink from '../../../components/fancy-link/FancyLink'
 
-type MonthContainerProps = {
-  posts: PostType[]
-  month: string
-  year: string
-}
-
-const MonthContainer = ({ posts, month, year }: MonthContainerProps) => {
-  return (
-    <Layout>
-      <Head>
-        <title>{`${month} - ${year}`}</title>
-      </Head>
-      <TimePageHeader text={`${month}, ${year}`} />
-      <div>
-        {posts.length ? (
-          posts.map((p) => <Post post={p} key={p.id} />)
-        ) : (
-          <div>Looks like no posts for that month...</div>
-        )}
-      </div>
-    </Layout>
-  )
-}
-
-export default MonthContainer
+import styles from './Month.module.css'
 
 const MONTHS = [
   'jan',
@@ -46,6 +23,51 @@ const MONTHS = [
   'nov',
   'dec',
 ]
+
+const longMonths: { [key: string]: string } = {
+  jan: 'January',
+  feb: 'February',
+  mar: 'March',
+  apr: 'April',
+  may: 'May',
+  jun: 'June',
+  jul: 'July',
+  aug: 'August',
+  sep: 'September',
+  oct: 'October',
+  nov: 'November',
+  dec: 'December',
+}
+
+type MonthContainerProps = {
+  posts: PostType[]
+  month: string
+  year: string
+}
+
+const MonthContainer = ({ posts, month, year }: MonthContainerProps) => {
+  return (
+    <Layout>
+      <Head>
+        <title>{`${month} - ${year}`}</title>
+      </Head>
+      <TimePageHeader>
+        {longMonths[month]}
+        <span className={styles.desktopSpace}>&nbsp;</span>
+        <FancyLink href={`/journal/${year}`}>{year}</FancyLink>
+      </TimePageHeader>
+      <div>
+        {posts.length ? (
+          posts.map((p) => <Post post={p} key={p.id} />)
+        ) : (
+          <div>Looks like no posts for that month...</div>
+        )}
+      </div>
+    </Layout>
+  )
+}
+
+export default MonthContainer
 
 export const getStaticProps: GetStaticProps<
   { posts: PostType[] },

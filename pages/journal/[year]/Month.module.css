@@ -1,0 +1,9 @@
+.desktopSpace {
+  display: initial;
+}
+
+@media only screen and (max-width: 480px) {
+  .desktopSpace {
+    display: none;
+  }
+}

@@ -1,7 +1,7 @@
-import { useRef, useState, useEffect, useContext } from 'react'
+import { useRef, useState, useEffect, useContext, useMemo } from 'react'
 import { useSpring, animated, useTransition } from 'react-spring'
 import styles from './MobileMenu.module.css'
-import { SubPageButton } from '../nav-bar/NavBar'
+import NavBar, { SubPageButton } from '../nav-bar/NavBar'
 import {
   disableBodyScroll,
   enableBodyScroll,
@@ -10,15 +10,16 @@ import {
 import { navImageContext } from '../nav-image-context/NavImageContext'
 import cn from 'classnames'
 import { useRouter } from 'next/dist/client/router'
+import { navbarShouldInvert } from '../../lib/utils'
 
 const Hamburger = ({
   onClick,
   menuDisplayed,
-  rootPath,
+  pathname,
 }: {
   onClick: () => void
   menuDisplayed: boolean
-  rootPath: string
+  pathname: string
 }) => {
   const { r } = useSpring({
     r: menuDisplayed ? 1 : 0,
@@ -38,8 +39,9 @@ const Hamburger = ({
     },
   })
   const { photoDoesIntersect } = useContext(navImageContext)
-  const shouldInvert =
-    photoDoesIntersect && (rootPath === '' || rootPath === 'journal')
+
+  const isValidPath = useMemo(() => navbarShouldInvert(pathname), [pathname])
+  const shouldInvert = photoDoesIntersect && isValidPath
   return (
     <div
       className={cn(styles.hamburgerContainer, {
@@ -177,7 +179,8 @@ const MobileMenu: React.FC = () => {
   const menuRef = useRef<HTMLDivElement>(null)
 
   const router = useRouter()
-  const rootPath = router.pathname?.split('/')[1] ?? ''
+  const pathname = router.pathname ?? ''
+  const rootPath = router.pathname.split('/')[1] ?? ''
 
   useEffect(() => {
     if (menuDisplayed) {
@@ -200,7 +203,7 @@ const MobileMenu: React.FC = () => {
       <Hamburger
         onClick={() => setMenuDisplayed(!menuDisplayed)}
         menuDisplayed={menuDisplayed}
-        rootPath={rootPath}
+        pathname={pathname}
       />
       {menuDisplayed && <FullScreenMenu rootPath={rootPath} />}
     </div>

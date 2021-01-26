@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import React from 'react'
 import { useRouter } from 'next/dist/client/router'
+import { isPostPage } from '../../lib/utils'
 
 const TEXT_TOP = 60
 

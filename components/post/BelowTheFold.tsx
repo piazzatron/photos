@@ -1,15 +1,18 @@
 import React from 'react'
 import { useRouter } from 'next/dist/client/router'
 import styles from './BelowTheFold.module.css'
+import { isPostPage } from '../../lib/utils'
 
 const BelowTheFold: React.FC = ({ children }) => {
   const router = useRouter()
 
   // Is this gonna work? What about time pages etc?
-  const showChildren = router?.pathname !== '/journal'
+  const showChildren = isPostPage(router?.pathname ?? '')
+
   if (showChildren) {
     return <>{children}</>
   }
+
   return (
     <div className={styles.container}>
       <div className={styles.preview}>

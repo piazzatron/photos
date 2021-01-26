@@ -2,10 +2,11 @@ import styles from './NavBar.module.css'
 import utils from '../../styles/utils.module.css'
 import cn from 'classnames'
 import FancyLink from '../fancy-link/FancyLink'
-import { useContext } from 'react'
+import { useContext, useMemo } from 'react'
 import { navImageContext } from '../nav-image-context/NavImageContext'
 import Instagram from '../../public/instagram.svg'
 import { useRouter } from 'next/dist/client/router'
+import { navbarShouldInvert } from '../../lib/utils'
 
 export const SubPageButton = ({
   href,
@@ -74,8 +75,11 @@ const SubPages = ({
 const NavBar: React.FC = () => {
   const { photoDoesIntersect } = useContext(navImageContext)
   const { pathname } = useRouter()
-  const inverted =
-    (pathname === '/' || pathname === '/journal') && photoDoesIntersect
+
+  const isValidPath = useMemo(() => navbarShouldInvert(pathname ?? ''), [
+    pathname,
+  ])
+  const inverted = isValidPath && photoDoesIntersect
 
   return (
     <div className={cn([styles.container, { [styles.inverted]: inverted }])}>
