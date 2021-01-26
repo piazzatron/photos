@@ -1,5 +1,7 @@
 .container {
-  position: relative
+  position: relative;
+  width: 100%;
+  max-width: 1825px;
 }
 .preview {
   height: 200px;
