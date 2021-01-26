@@ -18,13 +18,10 @@ const components = { InteractiveImage, BelowTheFold }
 
 type PostHeaderProps = {
   post: PostType
+  postUrl: string
 }
-const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
-  const date = post.date
-  const momentDate = useMemo(() => moment(date), [date])
-  const postUrl = `/journal/${momentDate.year().toString()}/${momentDate
-    .format('MMM')
-    .toLowerCase()}/${post.id}`
+const PostHeader: React.FC<PostHeaderProps> = ({ post, postUrl }) => {
+  const momentDate = useMemo(() => moment(post.date), [post.date])
   return (
     <div className={styles.headerContainer}>
       <div
@@ -55,21 +52,23 @@ const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
 }
 
 const Post = ({ post, isCompact = false }: PostProps) => {
+  const momentDate = useMemo(() => moment(post.date), [post.date])
+  const postUrl = `/journal/${momentDate.year().toString()}/${momentDate
+    .format('MMM')
+    .toLowerCase()}/${post.id}`
+
   return (
     <div
       className={cn(styles.postContainer, { [styles.isCompact]: isCompact })}
     >
-      <PostHeader post={post} />
+      <PostHeader post={post} postUrl={postUrl} />
       <div className={styles.postContent}>
         {hydrate(post.content, { components })}
       </div>
       <div
         className={cn(styles.backButton, utils.montserrat, utils.fontRegular)}
       >
-        <FancyLink
-          href={isCompact ? '/journal' : `/journal/posts/${post.id}`}
-          underlineHeight={2}
-        >
+        <FancyLink href={isCompact ? '/' : postUrl} underlineHeight={2}>
           {isCompact ? '< Journal' : '> See Full Post'}
         </FancyLink>
       </div>
