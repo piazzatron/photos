@@ -8,6 +8,7 @@ import cn from 'classnames'
 import utils from '../../styles/utils.module.css'
 import BelowTheFold from './BelowTheFold'
 import { useMemo } from 'react'
+import { DiscussionEmbed } from 'disqus-react'
 
 type PostProps = {
   post: PostType
@@ -72,6 +73,19 @@ const Post = ({ post, isCompact = false }: PostProps) => {
           {isCompact ? '< Journal' : '> See Full Post'}
         </FancyLink>
       </div>
+      {isCompact && (
+        <div className={styles.disqusWrapper}>
+          <DiscussionEmbed
+            shortname="piazza-photos"
+            config={{
+              url: `https://piazza.photos${postUrl}`,
+              identifier: post.id,
+              title: post.title,
+            }}
+          />
+          <div className={styles.disqusFooterCoverer} />
+        </div>
+      )}
     </div>
   )
 }

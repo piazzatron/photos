@@ -54,10 +54,10 @@
 /* Handle top and bottom of paragraphs btwn images */
 
 .postContent img + p {
-  margin-top: 64px;
+  margin-top: 85px;
 }
 
-.postContent p + img {
+.postContent p + img, .postContent p + div {
   margin-top: 64px;
 }
 
@@ -69,11 +69,27 @@
 }
 
 .backButton {
-  margin-top: 48px;
+  margin-top: 72px;
 }
 
 .backButton a {
   color: #4C4C4C;
+}
+
+.disqusWrapper {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 80px;width: 100%;
+  position: relative;
+}
+
+.disqusFooterCoverer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background-color: white;
 }
 
 @media only screen and (max-width: 480px) {
@@ -118,5 +134,13 @@
   .slash {
     font-size: 15px;
     top: -1px;
+  }
+
+  .disqusWrapper {
+    width: calc(100vw - 60px);
+  }
+
+  .disqusFooterCoverer {
+    height: 60px;
   }
 }
