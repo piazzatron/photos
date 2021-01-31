@@ -205,7 +205,7 @@ const Journal = ({ posts }: JournalProps) => {
   })
 
   items.splice(
-    1,
+    3,
     0,
     <div className={styles.subscribeContainer}>
       <EmailSubscribe key="subscribe" />
