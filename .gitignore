@@ -22,6 +22,7 @@ todo.md
 .DS_Store
 *.pem
 uploads
+uploads_next
 
 # debug
 npm-debug.log*
