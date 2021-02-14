@@ -12,12 +12,14 @@ type FrontMatterData = {
   title: string
   date: string
   location?: string
+  openGraphImage?: string
 }
 
 export type Post = {
   id: string
   title: string
   location?: string
+  openGraphImage?: string
   date: string
   content: Source
 }

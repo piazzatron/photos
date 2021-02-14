@@ -13,7 +13,7 @@ const FULL_WIDTH_BREAKPOINT = 1000
 
 // For now, this image is tightly tied to cloudinary
 
-const makeImageURL = (image_id: string, width?: number) =>
+export const makeImageURL = (image_id: string, width?: number) =>
   `https://res.cloudinary.com/dlf6ppjiw/image/upload/${
     width ? `c_scale,q_100,w_${width}/` : ''
   }piazza.photos/${image_id}.jpg`

@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
+    "serve": "next build && next start",
     "upload-images": "rm -rf uploads/.DS_Store && node ./scripts/cloudinaryUpload.js"
   },
   "dependencies": {

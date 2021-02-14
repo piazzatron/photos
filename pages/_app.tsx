@@ -22,6 +22,18 @@ function MyApp({ Component, pageProps }: AppProps) {
           locale: 'en_US',
           url: 'https://www.piazza.photos/',
           site_name: 'Michael Piazza Photography',
+          images: [
+            {
+              url:
+                'https://res.cloudinary.com/dlf6ppjiw/image/upload/c_scale,q_100,w_900/piazza.photos/1_i8exof.jpg',
+              height: 600,
+              width: 900,
+            },
+          ],
+        }}
+        twitter={{
+          handle: '@piazzatron',
+          cardType: 'summary_large_image',
         }}
       />
       <NavImageContextProvider>

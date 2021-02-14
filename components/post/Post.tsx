@@ -9,7 +9,6 @@ import utils from '../../styles/utils.module.css'
 import BelowTheFold from './BelowTheFold'
 import { useMemo } from 'react'
 import { DiscussionEmbed } from 'disqus-react'
-
 type PostProps = {
   post: PostType
   isCompact?: boolean
