@@ -16,7 +16,7 @@
   right: 0;
   left: 0;
   bottom: 0;
-  transform: rotateZ(-1deg);
+  /* transform: rotateZ(-1deg); */
 }
 
 .headerLeft {
@@ -26,6 +26,8 @@
   min-width: 290px;
   opacity: 0;
   animation: fadeUp 1.5s cubic-bezier(.18,.59,.44,.99) 0s 1 normal forwards;
+  position: relative;
+  top: -10px;
 }
 
 .welcomeSpacer {
@@ -55,7 +57,6 @@
   font-size: 14px;
   color: white;
   position: relative;
-  top: 10px;
   width: 286px;
 }
 .headerRight > div {
@@ -63,16 +64,20 @@
   opacity: 0;
 }
 
+.headerRight > div:last-child {
+  margin-bottom: 0px;
+}
+
 .headerRight > div:first-child {
-  animation: fadeUp 1.5s cubic-bezier(.18,.59,.44,.99) 0.5s 1 normal forwards;
+  animation: fadeUp 1.5s cubic-bezier(.18,.59,.44,.99) 0.3s 1 normal forwards;
 }
 
 .headerRight > div:nth-child(2) {
-  animation: fadeUp 1.5s cubic-bezier(.18,.59,.44,.99) 1.2s 1 normal forwards;
+  animation: fadeUp 1.5s cubic-bezier(.18,.59,.44,.99) 0.8s 1 normal forwards;
 }
 
 .headerRight > div:nth-child(3) {
-  animation: fadeUp 1.5s cubic-bezier(.18,.59,.44,.99) 2s 1 normal forwards;
+  animation: fadeUp 1.5s cubic-bezier(.18,.59,.44,.99) 1.5s 1 normal forwards;
 }
 
 .divider {
@@ -97,7 +102,7 @@
   right: -10px;
   top: -20px;
   height: 380px;
-  transform: rotateZ(0.8deg);
+  /* transform: rotateZ(0.8deg); */
   background-color: rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
@@ -122,6 +127,8 @@
   animation: moveUp 120s linear;
   filter: brightness(60%);
   width: 120%;
+  position: relative;
+  top: -300px;
 }
 
 @keyframes fadeUp {
@@ -179,7 +186,7 @@
     height: 300px;
     top: -5px;
     overflow: hidden;
-    transform: rotateZ(-1.5deg);
+    /* transform: rotateZ(-1.5deg); */
   }
 
 }

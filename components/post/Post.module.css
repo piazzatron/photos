@@ -121,13 +121,13 @@
   .postContent p {
     width: 100%;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 17px;
-    line-height: 28px;
+    font-size: 15px;
+    line-height: 22px;
     padding: 0px 24px;
   }
 
   .backButton {
-    margin-top: 36px;
+    margin-top: 72px;
     font-size: 14px;
   }
 

@@ -45,6 +45,10 @@
   margin-right: 19px !important;
 }
 
+.instagramContainer svg {
+  width: 22px;
+}
+
 .twitterContainer svg {
   width: 22px;
 }

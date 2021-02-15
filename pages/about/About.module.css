@@ -47,7 +47,9 @@
   }
 
   .mainView img {
+    height: initial;
     margin: 24px 0px;
+    width: calc(100% - 36px);
   }
 
   .text {

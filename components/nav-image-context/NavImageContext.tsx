@@ -3,7 +3,7 @@ import React from 'react'
 import { useRouter } from 'next/dist/client/router'
 import { isPostPage } from '../../lib/utils'
 
-const TEXT_TOP = 60
+const TEXT_TOP = 40
 
 export const navImageContext = React.createContext({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -31,7 +31,13 @@ const MovingPhotoHeader: React.FC<MovingPhotoHeaderProps> = ({
 
   useEffect(() => {
     const handle = setTimeout(() => {
-      setIndex((index) => (index + 1) % ids.length)
+      setIndex((index) => {
+        let newIndex = Math.floor(Math.random() * ids.length)
+        while (newIndex === index) {
+          newIndex = Math.floor(Math.random() * ids.length)
+        }
+        return newIndex
+      })
     }, MOVING_PHOTO_DURATION_MS)
     return () => {
       clearTimeout(handle)
@@ -94,7 +100,16 @@ const JournalHeader = () => {
     <>
       <MovingPhotoHeader
         brightness={brightness}
-        ids={['DSCF4435_xljnkt', 'smokestack_pwn4ek']}
+        ids={[
+          '1_i8exof',
+          'DSCF4435_xljnkt',
+          'DSCF4559_3_fkbmw0',
+          'smokestack_pwn4ek',
+          'DSCF3505_7_cygx7d',
+          'Gas2_xnge4z',
+          'fires_m2bbtw',
+          '3_z7xpb5',
+        ]}
       />
       <div
         className={styles.journalHeaderContainer}
@@ -147,9 +162,9 @@ const JournalHeader = () => {
         <div className={cn(styles.headerRight, utils.montserrat)}>
           {bottomDidType && (
             <>
-              <div>{`documenting the photography journey`}</div>
-              <div>{`oversharing the life journey`}</div>
-              <div>{`mostly on Fuji X-Pro3 and X100F`}</div>
+              <div>{`musings and photos`}</div>
+              <div>{`overshared from moments big and little`}</div>
+              <div>{`mostly on Fuji X-Pro3`}</div>
             </>
           )}
         </div>
@@ -162,8 +177,11 @@ const INITIAL_PAGE_COUNT = 3
 const BOTTOM_SCROLL_THRESHOLD_PIXELS = 300
 
 const useCurrentPage = (posts: PostType[]) => {
-  const [currentPage, setCurrentPage] = useState(INITIAL_PAGE_COUNT)
-  const { setJournalScroll } = useContext(stateContext)
+  const { setJournalScroll, lastSeenPage, setLastSeenPage } = useContext(
+    stateContext,
+  )
+  const initialPage = Math.max(INITIAL_PAGE_COUNT, lastSeenPage)
+  const [currentPage, setCurrentPage] = useState(initialPage)
 
   useEffect(() => {
     const listener = () => {
@@ -177,7 +195,11 @@ const useCurrentPage = (posts: PostType[]) => {
         window.innerHeight + window.scrollY >=
         document.body.offsetHeight - BOTTOM_SCROLL_THRESHOLD_PIXELS
       ) {
-        setCurrentPage((p) => Math.min(p + 1, posts.length))
+        setCurrentPage((p) => {
+          const newPage = Math.min(p + 1, posts.length)
+          setLastSeenPage(newPage)
+          return newPage
+        })
       }
     }
     window.addEventListener('scroll', listener)
@@ -196,13 +218,13 @@ const useSetInitialScroll = () => {
 }
 
 const Journal = ({ posts }: JournalProps) => {
-  useSetInitialScroll()
-
   const currentPage = useCurrentPage(posts)
   const items = range(currentPage).map((i) => {
     const p = posts[i]
     return <Post post={p} key={p.id} />
   })
+
+  useSetInitialScroll()
 
   items.splice(
     3,
