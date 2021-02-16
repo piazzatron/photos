@@ -175,6 +175,11 @@
     width: initial;
     top: -10px;
   }
+
+  .headerLeft {
+    margin-left: 8px;
+  }
+
   .headerRight {
     display: none;
   }
