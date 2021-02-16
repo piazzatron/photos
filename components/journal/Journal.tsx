@@ -63,7 +63,12 @@ const MovingPhotoHeader: React.FC<MovingPhotoHeaderProps> = ({
             ...props,
           }}
         >
-          <img src={makeCurrentURL(ids[item], isMobile)} />
+          <div
+            style={{
+              backgroundImage: `url(${makeCurrentURL(ids[item], isMobile)})`,
+            }}
+            className={styles.image}
+          />
         </animated.div>
       ))}
     </div>
@@ -101,6 +106,7 @@ const JournalHeader = () => {
       <MovingPhotoHeader
         brightness={brightness}
         ids={[
+          '3_z7xpb5',
           '1_i8exof',
           'DSCF4435_xljnkt',
           'DSCF4559_3_fkbmw0',
@@ -108,7 +114,6 @@ const JournalHeader = () => {
           'DSCF3505_7_cygx7d',
           'Gas2_xnge4z',
           'fires_m2bbtw',
-          '3_z7xpb5',
         ]}
       />
       <div
@@ -122,7 +127,7 @@ const JournalHeader = () => {
         <div className={styles.headerLeft}>
           <div className={cn([utils.playfair, utils.fontBold, styles.welcome])}>
             <div className={styles.welcomeSpacer} />
-            <div className={styles.wave}>👋</div>
+            {/* <div className={styles.wave}>👋</div> */}
             <div className={styles.welcomeText}>
               <Typist
                 avgTypingDelay={75}
@@ -163,8 +168,8 @@ const JournalHeader = () => {
           {bottomDidType && (
             <>
               <div>{`a meandering little log`}</div>
-              <div>{`of musings, moments, and minutia`}</div>
-              <div>{`seen mostly on Fuji X`}</div>
+              <div>{`of musings, moments, and minutiae`}</div>
+              <div>{`spotted mostly on Fuji X`}</div>
             </>
           )}
         </div>

@@ -34,13 +34,13 @@
   width: 6px;
 }
 .welcome {
-  font-size: 52px;
+  font-size: 64px;
   display: flex;
   color: white;
 }
 
 .welcomeSubtext {
-  font-size: 28px;
+  font-size: 27px;
   height: 35px;
   margin-left: 8px;
   color: white;
@@ -84,7 +84,7 @@
   width: 3px;
   height: 108px;
   background-color: white;
-  margin: 0px 24px;
+  margin: 0px 24px 0px 8px;
 }
 
 .outerContainer {
@@ -123,12 +123,17 @@
   }
 }
 
-.movingPhotoContainer img {
+.image {}
+
+.movingPhotoContainer .image {
   animation: moveUp 120s linear;
   filter: brightness(60%);
   width: 120%;
+  height: 110%;
   position: relative;
-  top: -300px;
+  background-size: cover;
+  background-position: 0% 25%;
+  /* top: -300px; */
 }
 
 @keyframes fadeUp {

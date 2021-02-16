@@ -47,7 +47,7 @@ const Footer = () => {
           underlineHeight={0}
         >
           <div className={styles.innerRight}>
-            <div className={styles.rightText}>© michael piazza, 2021</div>
+            <div className={styles.rightText}>© Michael Piazza, 2021</div>
             <img
               className={styles.github}
               src="/github.png"

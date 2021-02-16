@@ -103,19 +103,21 @@ const AboutPage = () => {
           <BoldText>{'> what is this place'}</BoldText>
           <p>
             {`This site is my little experiment at documenting (oversharing?) life as it transpires.
-              I'm not really sure how it will evolve over the coming years, but I had a strong desire to carve out a cozy spot
-              on the internet, apart from noisy social media platforms, for my photos to live in perpetuity. Let's see where it goes.`}
-            <p>{'Also, photos look so much better on a larger screen 🤷‍♂️'}</p>
+              I'm not so sure how it will evolve over the coming years, but I had a strong desire to carve out a cozy spot
+              on the internet, apart from noisy social media platforms, where my photos could live on in perpetuity. Let's see where it goes.`}
+            <p>
+              {'Also, wow do photos look so much better on a larger screen. 🤷‍♂️'}
+            </p>
           </p>
           <BoldText>{'> camera?'}</BoldText>
           <p>
-            {`I mostly shoot X-Pro3 (always JPEG) and occasionally film on a Canon AE-1.
+            {`I mostly shoot X-Pro3 (JPEG) and occasionally film on a Canon AE-1.
             The Fuji X100F was my gateway drug into this whole mess. `}
           </p>
           <BoldText>{'> how did you make this'}</BoldText>
           <p>
             {
-              'Not that it particularly matters, but I built this site from scratch with Next.js and Typescript. '
+              'For my fellow nerds: I built this site from scratch with Next.js and Typescript. '
             }
             <a
               href="https://github.com/piazzatron/photos"
