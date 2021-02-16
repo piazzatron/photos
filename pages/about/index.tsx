@@ -67,40 +67,37 @@ const AboutPage = () => {
       <div className={cn(styles.mainView, utils.montserrat)}>
         <img src="/me.jpg" />
         <div className={styles.text}>
-          <p>Hi!</p>
           <BoldText>{'> who are you'}</BoldText>
+          <p>Hi!</p>
           <p>
-            {`I’m Michael Piazza, a `}
+            {`I’m Michael Piazza - a `}
             <FlippyText />
             <br />
-            {`from
-          Oakland, CA, currently living in San Francisco. `}
+            {` from Oakland California, living in San Francisco. `}
+            <br />
             {`I'm `}
             <animated.span className={styles.animatedAge}>
               {age.interpolate((v) => Math.round(v as number))}
             </animated.span>
-            {' years old.'}
+            {'.'}
           </p>
           <p>
-            {`I enjoy shooting spontaneous moments on the street,
-          as well the texture and subtlety of
-          quieter every-day "mundane" life as well. Specialization is for ants, right?`}
+            {`
+            Photography has helped me maintain a playful relationship to reality and those who occupy it.
+            It's half art practice, half meditation.
+          `}
           </p>
-          <BoldText>{'> what is this "journal" business'}</BoldText>
+          <BoldText>{'> what is this place'}</BoldText>
           <p>
-            {
-              'This site is also an experiment in documenting life as it transpires. Something something digital artifacts. '
-            }
-          </p>
-          <BoldText>{'> why did you do this'}</BoldText>
-          <p>
-            {
-              'I built this site to be a permanent home for my photography. I wanted a place that I could fully own and evolve in the coming years. Plus, photos look so much juicier on a big screen.'
-            }
+            {`This site is my little experiment at documenting (oversharing?) life as it transpires.
+              I'm not really sure how it will evolve over the coming years, but I had a strong desire to carve out a cozy spot
+              on the internet, apart from noisy social media platforms, for my photos to live in perpetuity.`}
+            <p>{'Also, photos look so much better on a larger screen.'}</p>
           </p>
           <BoldText>{'> camera?'}</BoldText>
           <p>
-            {`The Fuji X100F was my gateway drug into this whole mess. Today I'm mostly shooting X-Pro3 (always JPEG) and occasionally film on an ancient Canon AE-1.`}
+            {`I mostly shoot X-Pro3 (always JPEG) and occasionally film on an ancient Canon AE-1.
+            The Fuji X100F was my gateway drug into this whole mess. `}
           </p>
           <BoldText>{'> how did you make this'}</BoldText>
           <p>

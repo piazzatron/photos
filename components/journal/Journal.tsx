@@ -162,9 +162,9 @@ const JournalHeader = () => {
         <div className={cn(styles.headerRight, utils.montserrat)}>
           {bottomDidType && (
             <>
-              <div>{`musings and photos`}</div>
-              <div>{`overshared from moments big and little`}</div>
-              <div>{`mostly on Fuji X-Pro3`}</div>
+              <div>{`a totally unnecessarily personal collection`}</div>
+              <div>{`of moments, musings, & minutia`}</div>
+              <div>{`shot mostly on Fuji X-Pro3`}</div>
             </>
           )}
         </div>
