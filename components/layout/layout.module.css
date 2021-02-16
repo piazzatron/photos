@@ -5,5 +5,6 @@
 @media only screen and (max-width: 480px) {
   .contentContainer {
     margin-top: 0px;
+    overflow-x: hidden;
   }
 }
