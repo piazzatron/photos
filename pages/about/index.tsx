@@ -84,14 +84,14 @@ const AboutPage = () => {
           <p>
             {`
             Photography has helped me maintain a playful relationship to reality and those who occupy it.
-            It's half art practice, half meditation.
+            It's half art practice, half meditation, and an excellent way to weather a pandemic.
           `}
           </p>
           <BoldText>{'> what is this place'}</BoldText>
           <p>
             {`This site is my little experiment at documenting (oversharing?) life as it transpires.
               I'm not really sure how it will evolve over the coming years, but I had a strong desire to carve out a cozy spot
-              on the internet, apart from noisy social media platforms, for my photos to live in perpetuity.`}
+              on the internet, apart from noisy social media platforms, for my photos to live in perpetuity. Let's see what happens.`}
             <p>{'Also, photos look so much better on a larger screen.'}</p>
           </p>
           <BoldText>{'> camera?'}</BoldText>
