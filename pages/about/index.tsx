@@ -9,7 +9,14 @@ const BoldText: React.FC = ({ children }) => {
   return <div className={cn(utils.fontBold, styles.boldText)}>{children}</div>
 }
 
-const MY_FUNCTIONS = ['software engineer', 'photographer', 'human boy']
+const MY_FUNCTIONS = [
+  'software engineer',
+  'photographer',
+  'human boy',
+  'artschool dropout',
+]
+
+const USE_AN_SET = new Set(['a', 'e', 'i', 'o'])
 
 const FlippyText = () => {
   const [currentFunction, setCurrentFunction] = useState(0)
@@ -33,8 +40,14 @@ const FlippyText = () => {
     }
   }, [currentFunction])
 
+  const firstLetter = USE_AN_SET.has(
+    MY_FUNCTIONS[currentFunction].charAt(0).toLowerCase(),
+  )
+    ? 'an'
+    : 'a'
   return (
     <>
+      {`${firstLetter} `}
       {t.map(({ item, key, props }) => (
         <animated.span
           key={key}
@@ -70,7 +83,7 @@ const AboutPage = () => {
           <BoldText>{'> who are you'}</BoldText>
           <p>Hi!</p>
           <p>
-            {`I’m Michael Piazza - a `}
+            {`I’m Michael Piazza - `}
             <FlippyText />
             <br />
             {` from Oakland California, living in San Francisco. `}
@@ -91,18 +104,18 @@ const AboutPage = () => {
           <p>
             {`This site is my little experiment at documenting (oversharing?) life as it transpires.
               I'm not really sure how it will evolve over the coming years, but I had a strong desire to carve out a cozy spot
-              on the internet, apart from noisy social media platforms, for my photos to live in perpetuity. Let's see what happens.`}
-            <p>{'Also, photos look so much better on a larger screen.'}</p>
+              on the internet, apart from noisy social media platforms, for my photos to live in perpetuity. Let's see where it goes.`}
+            <p>{'Also, photos look so much better on a larger screen 🤷‍♂️'}</p>
           </p>
           <BoldText>{'> camera?'}</BoldText>
           <p>
-            {`I mostly shoot X-Pro3 (always JPEG) and occasionally film on an ancient Canon AE-1.
+            {`I mostly shoot X-Pro3 (always JPEG) and occasionally film on a Canon AE-1.
             The Fuji X100F was my gateway drug into this whole mess. `}
           </p>
           <BoldText>{'> how did you make this'}</BoldText>
           <p>
             {
-              'Not that it particularly matters, but I built this site from scratch with Next.js and Typescript.'
+              'Not that it particularly matters, but I built this site from scratch with Next.js and Typescript. '
             }
             <a
               href="https://github.com/piazzatron/photos"
@@ -111,7 +124,7 @@ const AboutPage = () => {
             >
               Feel free to browse the code
             </a>
-            {` if you're into that sort of thing, you weirdo :)`}
+            {` if you're into that sort of thing :)`}
           </p>
         </div>
       </div>

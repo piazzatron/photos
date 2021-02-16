@@ -7,6 +7,8 @@
 
 .mainView p {
   color: #4c4c4c;
+  margin: 10px 0px;
+  font-size: 15px;
 }
 
 .mainView img {
@@ -41,9 +43,14 @@
   display: inline;
 }
 
+.boldText {
+  margin: 14px 0px;
+  font-size: 16px;
+}
+
 @media only screen and (max-width: 480px) {
   .mainView {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   .mainView img {

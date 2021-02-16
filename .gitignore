@@ -23,6 +23,7 @@ todo.md
 *.pem
 uploads
 uploads_next
+wip_posts
 
 # debug
 npm-debug.log*
