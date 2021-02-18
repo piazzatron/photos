@@ -11,12 +11,10 @@ const MAX_WIDTH = 1800
 // Where we start showing the images full width for mobile (this is a guess rn)
 const FULL_WIDTH_BREAKPOINT = 1000
 
-// For now, this image is tightly tied to cloudinary
-
 export const makeImageURL = (image_id: string, width?: number) =>
-  `https://res.cloudinary.com/dlf6ppjiw/image/upload/${
-    width ? `c_scale,q_100,w_${width}/` : ''
-  }piazza.photos/${image_id}.jpg`
+  `https://d22ibahswn5kqh.cloudfront.net/images/${image_id}.jpg${
+    width ? `?w=${width}` : ''
+  }`
 
 const InteractiveImage = ({
   image_id,

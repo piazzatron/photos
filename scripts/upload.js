@@ -1,24 +1,18 @@
 require('dotenv').config()
 const fs = require('fs')
 const process = require('process')
-const cloudinary = require('cloudinary').v2
+const S3 = require('aws-sdk/clients/s3')
 const prompts = require('prompts')
+
+
+const s3 = new S3()
 
 const HOME_FOLDER = 'uploads'
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-})
-
 const uploadPhoto = async (file) => {
   console.log(`Uploading ${file}`)
-  const res = await cloudinary.uploader.upload(`${HOME_FOLDER}/${file}`, {
-    folder: 'piazza.photos',
-    use_filename: true
-  })
-  return res.public_id
+  const fileBody = fs.readFileSync(`${process.cwd()}/${HOME_FOLDER}/${file}`)
+  await (s3.upload({Bucket: 'piazza.photos6', Key: `images/${file}`, Body: fileBody, ContentType: 'image/jpeg'}).promise())
 }
 
 const uploadAll = async () => {
@@ -28,8 +22,8 @@ const uploadAll = async () => {
   const res = []
   for (let file of files) {
     try {
-      const id = (await uploadPhoto(file)).split('/')[1]
-      res.push(id)
+      await uploadPhoto(file)
+      res.push(file.split('.')[0])
     } catch (e) {
       console.error(e)
       throw e
