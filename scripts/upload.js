@@ -11,8 +11,9 @@ const HOME_FOLDER = 'uploads'
 
 const uploadPhoto = async (file) => {
   console.log(`Uploading ${file}`)
+  const name = file.split('.')[0]
   const fileBody = fs.readFileSync(`${process.cwd()}/${HOME_FOLDER}/${file}`)
-  await (s3.upload({Bucket: 'piazza.photos6', Key: `images/${file}`, Body: fileBody, ContentType: 'image/jpeg'}).promise())
+  await (s3.upload({Bucket: 'piazza.photos6', Key: `images/${name}.jpg`, Body: fileBody, ContentType: 'image/jpeg'}).promise())
 }
 
 const uploadAll = async () => {
