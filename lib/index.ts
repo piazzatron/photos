@@ -15,7 +15,7 @@ type FrontMatterData = {
   openGraphImage?: string
 }
 
-export type Post = {
+export type LegacyPost = {
   id: string
   title: string
   location?: string
@@ -38,7 +38,7 @@ const components = {
   BelowTheFold,
 }
 
-export const getAllPosts = async (): Promise<Post[]> => {
+export const getAllPosts = async (): Promise<LegacyPost[]> => {
   const p = resolve(cwd(), 'posts')
   const files = recursivelyGetFiles(p)
   const posts = await Promise.all(
