@@ -7,16 +7,18 @@ const client = sanityClient({
   apiVersion: '2022-04-19'
 })
 
-
-type Photo = { url: string; name: string; type: 'photo'; fileType: string }
+type Photo = { url: string; title: string; type: 'photo'; fileType: string }
 type Text = { text: string; type: 'text' }
 
-type PostV2 = {
+// TODO: should move this one
+export type PostV2 = {
   id: string
+  title: string
   openGraphImage?: string
   location?: string
   date: string
   content: Array<Photo | Text>
+  version: '2'
 }
 
 type RawCMSPost = {
@@ -43,18 +45,19 @@ class CMSClient {
     return rawPosts.map((p) => ({
       ...p,
       id: '123', // TODO
+      version: '2',
       content: p.content.map(c => {
         if ('url' in c) {
           const r = /production\/(.*)-/
           const strippedUrl = c.url.match(r)[1]
           const split = c.url.split('.')
           const fileType = split[split.length - 1]
-          console.log({strippedUrl, fileType})
 
           return {
-            name: '',
+            title: '',
             type: 'photo',
-            url: c.url
+            url: strippedUrl,
+            fileType,
           }
         } else {
           return {
