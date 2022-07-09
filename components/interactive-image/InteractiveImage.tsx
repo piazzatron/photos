@@ -13,8 +13,13 @@ const MAX_WIDTH = 1800
 // Where we start showing the images full width for mobile (this is a guess rn)
 const FULL_WIDTH_BREAKPOINT = 1000
 
-export const makeImageURL = (image_id: string, width?: number, version: '1' | '2', fileType = 'jpg') => {
-  if (version === '1')  {
+export const makeImageURL = (
+  image_id: string,
+  width?: number,
+  version: '1' | '2',
+  fileType = 'jpg',
+) => {
+  if (version === '1') {
     const base = `https://d22ibahswn5kqh.cloudfront.net/images/${image_id}.${fileType}`
     return `${base}${width ? `?w=${width}` : ''}`
   }
@@ -28,7 +33,7 @@ const InteractiveImage = ({
   image_id,
   belowFold = false,
   version = '1',
-  fileType = 'jpg'
+  fileType = 'jpg',
 }: InteractiveImageProps) => {
   const { addRef } = useContext(navImageContext)
   const callBackRef = useCallback((element: HTMLImageElement | null) => {
