@@ -1,11 +1,9 @@
 import { GetStaticProps } from 'next'
-import { getAllPosts, getAllPostsByYear, LegacyPost } from '../lib'
+import { getAllPosts, LegacyPost, PostV2 } from '../lib'
 import moment from 'moment'
-import Post from '../components/post/Post'
 import Head from 'next/head'
 import Layout from '../components/layout/layout'
 import Journal from '../components/journal/Journal'
-import { PostV2 } from '../lib/cms'
 
 type JournalProps = {
   posts: Array<LegacyPost | PostV2>
@@ -33,7 +31,6 @@ export const getStaticProps: GetStaticProps<
     const [aDate, bDate] = [moment(a.date), moment(b.date)]
     return aDate > bDate ? -1 : 1
   })
-  console.log({posts})
   // TODO: need some sort of 'make post' functionality here to actually
   // pull out the context of the post
   return {

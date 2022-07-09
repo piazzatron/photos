@@ -1,4 +1,4 @@
-import { LegacyPost, Post as PostType } from '../../lib'
+import { LegacyPost, PostV2 } from '../../lib'
 import hydrate from 'next-mdx-remote/hydrate'
 import InteractiveImage from '../../components/interactive-image/InteractiveImage'
 import FancyLink from '../fancy-link/FancyLink'
@@ -9,7 +9,6 @@ import utils from '../../styles/utils.module.css'
 import BelowTheFold from './BelowTheFold'
 import { useMemo } from 'react'
 import { DiscussionEmbed } from 'disqus-react'
-import { PostV2 } from '../../lib/cms'
 
 type PostProps = {
   post: LegacyPost | PostV2
@@ -53,7 +52,27 @@ const PostHeader: React.FC<PostHeaderProps> = ({ post, postUrl }) => {
   )
 }
 
+const LegacyPostContent = ({ post }: { post: LegacyPost }) => {
+  return <>{hydrate(post.content, { components })}</>
+}
 
+const PostV2Content = ({ post }: { post: PostV2 }) => {
+  return (
+    <>
+      {post.content.map((content) => {
+        if (content.type === 'photo') {
+          return (
+            <InteractiveImage
+              imageId={content.url}
+              version="2"
+              fileType={content.fileType}
+            />
+          )
+        }
+      })}
+    </>
+  )
+}
 
 const Post = ({ post, isCompact = false }: PostProps) => {
   const momentDate = useMemo(() => moment(post.date), [post.date])
@@ -67,10 +86,11 @@ const Post = ({ post, isCompact = false }: PostProps) => {
     >
       <PostHeader post={post} postUrl={postUrl} />
       <div className={styles.postContent}>
-        {post.version === '1' ?
-          hydrate(post.content, { components }) :
-          'hello world!!!!!!!'
-        }
+        {post.version === '1' ? (
+          <LegacyPostContent post={post} />
+        ) : (
+          <PostV2Content post={post} />
+        )}
       </div>
       <div
         className={cn(styles.backButton, utils.montserrat, utils.fontRegular)}

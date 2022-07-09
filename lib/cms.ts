@@ -1,25 +1,12 @@
 import sanityClient from '@sanity/client'
+import { PostV2 } from './index'
 
 const client = sanityClient({
   projectId: '4ot7e40n', // TODO: add this to env
   dataset: 'production',
   useCdn: true,
-  apiVersion: '2022-04-19'
+  apiVersion: '2022-04-19',
 })
-
-type Photo = { url: string; title: string; type: 'photo'; fileType: string }
-type Text = { text: string; type: 'text' }
-
-// TODO: should move this one
-export type PostV2 = {
-  id: string
-  title: string
-  openGraphImage?: string
-  location?: string
-  date: string
-  content: Array<Photo | Text>
-  version: '2'
-}
 
 type RawCMSPost = {
   content: Array<{ text: string } | { url: string }>
@@ -46,10 +33,11 @@ class CMSClient {
       ...p,
       id: '123', // TODO
       version: '2',
-      content: p.content.map(c => {
+      content: p.content.map((c) => {
         if ('url' in c) {
-          const r = /production\/(.*)-/
-          const strippedUrl = c.url.match(r)[1]
+          console.log({ c })
+          const r = /production\/(.*)\./
+          const strippedUrl = c.url.match(r)?.[1] ?? ''
           const split = c.url.split('.')
           const fileType = split[split.length - 1]
 
@@ -62,10 +50,10 @@ class CMSClient {
         } else {
           return {
             type: 'text',
-            text: c.text
+            text: c.text,
           }
         }
-      })
+      }),
     }))
   }
 }

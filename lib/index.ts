@@ -7,7 +7,7 @@ import moment from 'moment'
 import renderToString from 'next-mdx-remote/render-to-string'
 import InteractiveImage from '../components/interactive-image/InteractiveImage'
 import BelowTheFold from '../components/post/BelowTheFold'
-import CMSClient, { PostV2 } from './cms'
+import CMSClient from './cms'
 
 type FrontMatterData = {
   title: string
@@ -26,6 +26,19 @@ export type LegacyPost = {
   version: '1'
 }
 
+type Photo = { url: string; title: string; type: 'photo'; fileType: string }
+type Text = { text: string; type: 'text' }
+
+export type PostV2 = {
+  id: string
+  title: string
+  openGraphImage?: string
+  location?: string
+  date: string
+  content: Array<Photo | Text>
+  version: '2'
+}
+
 const recursivelyGetFiles = (dir: string): string[] => {
   const dirents = readdirSync(dir, { withFileTypes: true })
   const files = dirents.map((dirent) => {
@@ -42,10 +55,11 @@ const components = {
 
 const client = new CMSClient()
 
-export const getAllPosts = async (): Promise<Array<LegacyPost | PostV2>> => {
+const getLegacyPosts = async (): Promise<LegacyPost[]> => {
   const p = resolve(cwd(), 'posts')
   const files = recursivelyGetFiles(p)
-  const posts: LegacyPost[] = await Promise.all(
+
+  return Promise.all(
     files.map(async (file) => {
       const fileContents = readFileSync(file, 'utf8')
       const frontMatter = matter(fileContents)
@@ -64,9 +78,13 @@ export const getAllPosts = async (): Promise<Array<LegacyPost | PostV2>> => {
       }
     }),
   )
+}
 
+export const getAllPosts = async (): Promise<Array<LegacyPost | PostV2>> => {
+  const legacyPosts = await getLegacyPosts()
   const cmsPosts = await client.getAllPosts()
-  return [...posts, ...cmsPosts]
+  console.log({ cmsPosts: JSON.stringify(cmsPosts) })
+  return [...legacyPosts, ...cmsPosts]
 }
 
 /**
