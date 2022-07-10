@@ -31,7 +31,7 @@ class CMSClient {
 
     return rawPosts.map((p) => ({
       ...p,
-      id: '123', // TODO
+      id: p.title.replace(' ', '-').toLowerCase(),
       version: '2',
       content: p.content.map((c) => {
         if ('url' in c) {
@@ -41,7 +41,7 @@ class CMSClient {
           const fileType = split[split.length - 1]
 
           return {
-            title: '',
+            title: p.title,
             type: 'photo',
             url: strippedUrl,
             fileType,
