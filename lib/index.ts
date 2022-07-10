@@ -83,7 +83,6 @@ const getLegacyPosts = async (): Promise<LegacyPost[]> => {
 export const getAllPosts = async (): Promise<Array<LegacyPost | PostV2>> => {
   const legacyPosts = await getLegacyPosts()
   const cmsPosts = await client.getAllPosts()
-  console.log({ cmsPosts: JSON.stringify(cmsPosts) })
   return [...legacyPosts, ...cmsPosts]
 }
 
