@@ -39,6 +39,8 @@ export type PostV2 = {
   version: '2'
 }
 
+export type LegacyOrV2Post = PostV2 | LegacyPost
+
 const recursivelyGetFiles = (dir: string): string[] => {
   const dirents = readdirSync(dir, { withFileTypes: true })
   const files = dirents.map((dirent) => {
@@ -80,7 +82,7 @@ const getLegacyPosts = async (): Promise<LegacyPost[]> => {
   )
 }
 
-export const getAllPosts = async (): Promise<Array<LegacyPost | PostV2>> => {
+export const getAllPosts = async (): Promise<LegacyOrV2Post[]> => {
   const legacyPosts = await getLegacyPosts()
   const cmsPosts = await client.getAllPosts()
   return [...legacyPosts, ...cmsPosts]

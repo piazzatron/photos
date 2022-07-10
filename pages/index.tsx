@@ -1,12 +1,12 @@
 import { GetStaticProps } from 'next'
-import { getAllPosts, LegacyPost, PostV2 } from '../lib'
+import { getAllPosts, LegacyOrV2Post, LegacyPost, PostV2 } from '../lib'
 import moment from 'moment'
 import Head from 'next/head'
 import Layout from '../components/layout/layout'
 import Journal from '../components/journal/Journal'
 
 type JournalProps = {
-  posts: Array<LegacyPost | PostV2>
+  posts: LegacyOrV2Post[]
 }
 
 const JournalPage = ({ posts }: JournalProps) => {
@@ -23,7 +23,7 @@ const JournalPage = ({ posts }: JournalProps) => {
 }
 
 export const getStaticProps: GetStaticProps<
-  { posts: Array<LegacyPost | PostV2> },
+  { posts: LegacyOrV2Post[] },
   Record<string, never>
 > = async () => {
   const posts = await getAllPosts()

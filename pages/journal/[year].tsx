@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { getAllPosts, getAllPostsByYear, Post as PostType } from '../../lib'
+import { getAllPosts, getAllPostsByYear, LegacyOrV2Post } from '../../lib'
 import moment from 'moment'
 import Post from '../../components/post/Post'
 import Layout from '../../components/layout/layout'
@@ -7,7 +7,7 @@ import Head from 'next/head'
 import TimePageHeader from '../../components/time-page-header/TimePageHeader'
 
 type YearContainerProps = {
-  posts: PostType[]
+  posts: LegacyOrV2Post[]
   year: string
 }
 
@@ -32,7 +32,7 @@ const YearContainer = ({ posts, year }: YearContainerProps) => {
 export default YearContainer
 
 export const getStaticProps: GetStaticProps<
-  { posts: PostType[] },
+  { posts: LegacyOrV2Post[] },
   { year: string }
 > = async (context) => {
   if (!context.params) throw new Error('no params')
@@ -46,6 +46,7 @@ export const getStaticProps: GetStaticProps<
       posts,
       year: context.params.year,
     },
+    revalidate: 10,
   }
 }
 

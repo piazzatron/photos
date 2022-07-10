@@ -21,13 +21,12 @@
 ### July 8
 - [X] Render PostV2 lol
 - [X] Fix up the errors in InteractiveImage.tsx
+- [X] Fix PostHeaderProps type - does this work even?
+- [X] Get it to invalidate next cache whenever new content is posted
+- [X] Deploy the Studio for ez edits
 
-
-Trying to recover where I left off here...
-- [ ] Fix PostHeaderProps type - does this work even?
+### TODO
 - [ ] Put sanity projectId as an envar
-- [ ] Get it to invalidate next cache whenever new content is posted
-- [ ] Deploy the Studio for ez edits
+- [ ] Remove all the LegacyPost stuff
 
-- [ ] Make the CMS take paragraph text, so you can have blocks etc
 

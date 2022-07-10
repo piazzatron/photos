@@ -2,19 +2,22 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Layout from '../../../../components/layout/layout'
 import Post from '../../../../components/post/Post'
-import { getAllPosts } from '../../../../lib'
-import { Post as PostType } from '../../../../lib/index'
+import { getAllPosts, LegacyOrV2Post } from '../../../../lib'
 import { makeImageURL } from '../../../../components/interactive-image/InteractiveImage'
 import moment from 'moment'
 import { NextSeo } from 'next-seo'
 
 type PostPageProps = {
-  post: PostType
+  post: LegacyOrV2Post
 }
 
-const PostPageSEO = ({ post }: { post: PostType }) => {
+const PostPageSEO = ({ post }: { post: LegacyOrV2Post }) => {
   const image = post?.openGraphImage
-    ? makeImageURL(post.openGraphImage, 900)
+    ? makeImageURL({
+        imageId: post.openGraphImage,
+        width: 900,
+        version: post.version,
+      })
     : null
   const dateString = moment(post.date).format('MMM D, YYYY')
   const description = `${dateString}${
@@ -54,7 +57,7 @@ const PostPage = ({ post }: PostPageProps) => {
 export default PostPage
 
 export const getStaticProps: GetStaticProps<
-  { post: PostType },
+  { post: LegacyOrV2Post },
   { id: string }
 > = async (context) => {
   const post = (await getAllPosts()).find((p) => p.id === context.params?.id)
@@ -63,6 +66,7 @@ export const getStaticProps: GetStaticProps<
     props: {
       post,
     },
+    revalidate: 10,
   }
 }
 

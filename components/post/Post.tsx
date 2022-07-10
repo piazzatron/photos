@@ -1,4 +1,4 @@
-import { LegacyPost, PostV2 } from '../../lib'
+import { LegacyOrV2Post, LegacyPost, PostV2 } from '../../lib'
 import hydrate from 'next-mdx-remote/hydrate'
 import InteractiveImage from '../../components/interactive-image/InteractiveImage'
 import FancyLink from '../fancy-link/FancyLink'
@@ -11,14 +11,14 @@ import { useMemo } from 'react'
 import { DiscussionEmbed } from 'disqus-react'
 
 type PostProps = {
-  post: LegacyPost | PostV2
+  post: LegacyOrV2Post
   isCompact?: boolean
 }
 
 const components = { InteractiveImage, BelowTheFold }
 
 type PostHeaderProps = {
-  post: PostType
+  post: LegacyOrV2Post
   postUrl: string
 }
 const PostHeader: React.FC<PostHeaderProps> = ({ post, postUrl }) => {

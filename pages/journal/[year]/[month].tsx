@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { getAllPosts, getAllPostsByYear, Post as PostType } from '../../../lib'
+import { getAllPosts, getAllPostsByYear, LegacyOrV2Post } from '../../../lib'
 import moment from 'moment'
 import Post from '../../../components/post/Post'
 import Layout from '../../../components/layout/layout'
@@ -40,7 +40,7 @@ const longMonths: { [key: string]: string } = {
 }
 
 type MonthContainerProps = {
-  posts: PostType[]
+  posts: LegacyOrV2Post[]
   month: string
   year: string
 }
@@ -70,7 +70,7 @@ const MonthContainer = ({ posts, month, year }: MonthContainerProps) => {
 export default MonthContainer
 
 export const getStaticProps: GetStaticProps<
-  { posts: PostType[] },
+  { posts: LegacyOrV2Post[] },
   { year: string; month: string }
 > = async (context) => {
   if (context.params === undefined) throw new Error('no params')
@@ -91,6 +91,7 @@ export const getStaticProps: GetStaticProps<
       month: context.params.month,
       year: context.params.year,
     },
+    revalidate: 10,
   }
 }
 
