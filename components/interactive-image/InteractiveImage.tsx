@@ -9,10 +9,6 @@ type InteractiveImageProps = {
   fileType?: string
 }
 
-const MAX_WIDTH = 1800
-// Where we start showing the images full width for mobile (this is a guess rn)
-const FULL_WIDTH_BREAKPOINT = 1000
-
 export const makeImageURL = ({
   imageId,
   width,
@@ -47,21 +43,49 @@ const InteractiveImage = ({
       addRef(element, belowFold)
     }
   }, [])
-  const src = makeImageURL({ imageId, width: MAX_WIDTH, version, fileType })
+  const src = makeImageURL({ imageId, width: 1800, version, fileType })
+  // const srcSet = `
+  //   ${makeImageURL({ imageId, width: 600, version, fileType })} ${600}w,
+  //   ${makeImageURL({ imageId, width: 1400, version, fileType })} ${1400}w,
+  //   ${makeImageURL({
+  //     imageId,
+  //     width: MAX_WIDTH,
+  //     version,
+  //     fileType,
+  //   })} ${MAX_WIDTH}w
+  // `
+
   const srcSet = `
-    ${makeImageURL({ imageId, width: 600, version, fileType })} ${600}w,
-    ${makeImageURL({ imageId, width: 1400, version, fileType })} ${1400}w,
     ${makeImageURL({
       imageId,
-      width: MAX_WIDTH,
+      width: 1400,
       version,
       fileType,
-    })} ${MAX_WIDTH}w
-  `
-  const sizes = `
-  (max-width: ${FULL_WIDTH_BREAKPOINT}px) 100vw,
-  (max-width: ${MAX_WIDTH}px) 96vw,
-  1800px;
+    })} 1400w,
+    ${makeImageURL({
+      imageId,
+      width: 1800,
+      version,
+      fileType,
+    })} 1800w,
+    ${makeImageURL({
+      imageId,
+      width: 2800,
+      version,
+      fileType,
+    })} 2800w,
+    ${makeImageURL({
+      imageId,
+      width: 3600,
+      version,
+      fileType,
+    })} 3600w,
+    ${makeImageURL({
+      imageId,
+      width: 5400,
+      version,
+      fileType,
+    })} 5400w
   `
 
   return (
@@ -70,7 +94,6 @@ const InteractiveImage = ({
       src={src}
       ref={callBackRef}
       srcSet={srcSet}
-      sizes={sizes}
       onClick={() => {
         console.log('click')
       }}

@@ -35,7 +35,6 @@ class CMSClient {
       version: '2',
       content: p.content.map((c) => {
         if ('url' in c) {
-          console.log({ c })
           const r = /production\/(.*)\./
           const strippedUrl = c.url.match(r)?.[1] ?? ''
           const split = c.url.split('.')
