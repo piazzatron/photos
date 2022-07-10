@@ -12,6 +12,7 @@
 
 # Bugs
 - Maybe V2 posts don't get the article inversion effect?
+- BelowTheFold is broken if the first element after is text
 
 # Fun articles to write 
 - How I did the header inversion effect
