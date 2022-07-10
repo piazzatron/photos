@@ -45,53 +45,26 @@ const InteractiveImage = ({
   }, [])
   const src = makeImageURL({ imageId, width: 1800, version, fileType })
 
+  const makeSrcSetAttr = (w: number) =>
+    `${makeImageURL({
+      imageId,
+      width: w,
+      version,
+      fileType,
+    })} ${w}w`
+
   // Hack: Very annoying thing where the old images don't support full resizing,
   // so we have to give them a different srcset
 
-  const srcSet = `
-    ${makeImageURL({
-      imageId,
-      width: 1400,
-      version,
-      fileType,
-    })} 1400w,
-    ${makeImageURL({
-      imageId,
-      width: 1800,
-      version,
-      fileType,
-    })} 1800w,
-    ${
-      version === '1'
-        ? `
-        ${makeImageURL({
-          imageId,
-          width: 2600,
-          version,
-          fileType,
-        })} 2600w,
-        `
-        : `${makeImageURL({
-            imageId,
-            width: 2800,
-            version,
-            fileType,
-          })} 2800w,
-        ${makeImageURL({
-          imageId,
-          width: 3600,
-          version,
-          fileType,
-        })} 3600w,
-        ${makeImageURL({
-          imageId,
-          width: 5400,
-          version,
-          fileType,
-        })} 5400w
-      }`
-    }
-  `
+  const srcSet = [
+    makeSrcSetAttr(450),
+    makeSrcSetAttr(900),
+    makeSrcSetAttr(1400),
+    makeSrcSetAttr(1800),
+    ...(version === '1'
+      ? [makeSrcSetAttr(2600)]
+      : [makeSrcSetAttr(2800), makeSrcSetAttr(3600), makeSrcSetAttr(5400)]),
+  ].join(',')
 
   return (
     <img
