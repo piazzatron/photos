@@ -1,11 +1,15 @@
 import sanityClient from '@sanity/client'
 import { PostV2 } from './index'
 
+const token =
+  'sktOgSk1uQGrc9NMz9s6D3MWz9AmdPchrJMnkttrvV3wib4olQf9Rawnuq4cuJQuTBTCagwqKuiAMnz1xwZJl55M8iWJ6D359EuwLgngIOPj7bwOGADzcC0tgDzRB0E1Gs0uohUDPGqh1vpa8PWuN6sCQyVxdMWpiObFhyjwSaCDcoLOvNhD'
+
 const client = sanityClient({
   projectId: '4ot7e40n', // TODO: add this to env
   dataset: 'production',
   useCdn: true,
   apiVersion: '2022-04-19',
+  token,
 })
 
 type RawCMSPost = {

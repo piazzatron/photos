@@ -28,6 +28,10 @@
 - [X] Deploy the Studio for ez edits
 
 ### TODO
+- [ ] Need some way to preview stuff
+- [ ] Below the fold working with CMS
+
+## Tech Debt
 - [ ] Put sanity projectId as an envar
 - [ ] Remove all the LegacyPost stuff
 
