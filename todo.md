@@ -1,0 +1,33 @@
+# Development
+- Run app with `npm run dev`
+- To run sanity locally, do `npm run start` (make sure Sanity is installed: `npm install -g @sanity/cli`)
+  - Check out on localhost:3333
+- To redeploy Sanity, do `npm run deploy`
+
+
+
+# How this works
+- `index.tsx` calls `getAllPosts()`, which gets both existing checked in posts (LegacyPost) and posts from Sanity (PostV2).
+  - This calls into `cms.ts` CMSClient, which uses some complex query langauge nonsense to get the CMS posts
+
+# Bugs
+- Maybe V2 posts don't get the article inversion effect?
+
+# Fun articles to write 
+- How I did the header inversion effect
+- Why I migrated from my own CMS to Sanity
+  - It's fun to hand roll things, but ease of upload trumps all
+
+### July 8
+- [X] Render PostV2 lol
+- [X] Fix up the errors in InteractiveImage.tsx
+
+
+Trying to recover where I left off here...
+- [ ] Fix PostHeaderProps type - does this work even?
+- [ ] Put sanity projectId as an envar
+- [ ] Get it to invalidate next cache whenever new content is posted
+- [ ] Deploy the Studio for ez edits
+
+- [ ] Make the CMS take paragraph text, so you can have blocks etc
+

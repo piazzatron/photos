@@ -31,7 +31,7 @@ const uploadAll = async () => {
     }
   }
   res.forEach(r =>
-    console.log(`<InteractiveImage image_id="${r}" />`)
+    console.log(`<InteractiveImage imageId="${r}" />`)
   )
 }
 

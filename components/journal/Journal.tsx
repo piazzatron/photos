@@ -1,4 +1,4 @@
-import { Post as PostType } from '../../lib'
+import { LegacyPost, Post as PostType } from '../../lib'
 import Post from '../post/Post'
 import cn from 'classnames'
 import utils from '../../styles/utils.module.css'
@@ -10,6 +10,7 @@ import { useContext, useEffect, useState } from 'react'
 import EmailSubscribe from '../email-subscribe/EmailSubscribe'
 import { stateContext } from '../state-provider/StateProvider'
 import { animated, config, useTransition } from 'react-spring'
+import { PostV2 } from '../../lib/cms'
 
 type MovingPhotoHeaderProps = {
   ids: string[]
@@ -76,7 +77,7 @@ const MovingPhotoHeader: React.FC<MovingPhotoHeaderProps> = ({
 }
 
 type JournalProps = {
-  posts: PostType[]
+  posts: Array<LegacyPost | PostV2>
 }
 
 const JournalHeader = () => {

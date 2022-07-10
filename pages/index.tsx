@@ -1,13 +1,12 @@
 import { GetStaticProps } from 'next'
-import { getAllPosts, getAllPostsByYear, Post as PostType } from '../lib'
+import { getAllPosts, LegacyPost, PostV2 } from '../lib'
 import moment from 'moment'
-import Post from '../components/post/Post'
 import Head from 'next/head'
 import Layout from '../components/layout/layout'
 import Journal from '../components/journal/Journal'
 
 type JournalProps = {
-  posts: PostType[]
+  posts: Array<LegacyPost | PostV2>
 }
 
 const JournalPage = ({ posts }: JournalProps) => {
@@ -24,7 +23,7 @@ const JournalPage = ({ posts }: JournalProps) => {
 }
 
 export const getStaticProps: GetStaticProps<
-  { posts: PostType[] },
+  { posts: Array<LegacyPost | PostV2> },
   Record<string, never>
 > = async () => {
   const posts = await getAllPosts()
@@ -32,13 +31,13 @@ export const getStaticProps: GetStaticProps<
     const [aDate, bDate] = [moment(a.date), moment(b.date)]
     return aDate > bDate ? -1 : 1
   })
-
   // TODO: need some sort of 'make post' functionality here to actually
   // pull out the context of the post
   return {
     props: {
       posts,
     },
+    revalidate: 10, // regenerate with every request, once per ten sec at most
   }
 }
 

@@ -6,7 +6,7 @@
   width: 100%;
   object-fit: contain;
   margin: 6px 0px;
-  /* cursor: pointer; */
+  padding: 0px 24px;
 }
 
 .container:hover {
