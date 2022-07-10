@@ -59,7 +59,7 @@ const LegacyPostContent = ({ post }: { post: LegacyPost }) => {
 const PostV2Content = ({ post }: { post: PostV2 }) => {
   return (
     <>
-      {post.content.map((content) => {
+      {post.content.map((content, i) => {
         if (content.type === 'photo') {
           return (
             <InteractiveImage
@@ -69,6 +69,7 @@ const PostV2Content = ({ post }: { post: PostV2 }) => {
             />
           )
         }
+        return <p key={i}>{content.text}</p>
       })}
     </>
   )
