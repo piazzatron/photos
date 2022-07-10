@@ -37,6 +37,7 @@ export const getStaticProps: GetStaticProps<
     props: {
       posts,
     },
+    revalidate: 10, // regenerate with every request, once per ten sec at most
   }
 }
 
