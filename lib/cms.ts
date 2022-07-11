@@ -1,15 +1,16 @@
 import sanityClient from '@sanity/client'
 import { PostV2 } from './index'
 
+// Grants read access to unpublished posts for previewing in dev mode
 const token =
-  'sktOgSk1uQGrc9NMz9s6D3MWz9AmdPchrJMnkttrvV3wib4olQf9Rawnuq4cuJQuTBTCagwqKuiAMnz1xwZJl55M8iWJ6D359EuwLgngIOPj7bwOGADzcC0tgDzRB0E1Gs0uohUDPGqh1vpa8PWuN6sCQyVxdMWpiObFhyjwSaCDcoLOvNhD'
+  'skhDao2eyyQAVw81XleyWreMLecyiXOR3BzQzmy8sjZDtVUOfOF92xZe7jdrT0DALBkxpAWjbijteokDlv4fY19rhqh5pGqkTr9WYE8WwPE9kkk3A0fmFEVjpnVtUxzIXwUpbBCB8shzpmAoQyzOn9IANTCxHGobwvpF08rl9grADlRXZehD'
 
 const client = sanityClient({
   projectId: '4ot7e40n', // TODO: add this to env
   dataset: 'production',
   useCdn: true,
   apiVersion: '2022-04-19',
-  token,
+  token: process.env.NODE_ENV === 'production' ? undefined : token,
 })
 
 type RawCMSPost = {

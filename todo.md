@@ -1,16 +1,18 @@
+# Left Off
+- Porting to new block structure - check out the stashed schema changes
+
 # Development
 - Run app with `npm run dev`
 - To run sanity locally, do `npm run start` (make sure Sanity is installed: `npm install -g @sanity/cli`)
   - Check out on localhost:3333
 - To redeploy Sanity, do `npm run deploy`
 
-
-
 # How this works
 - `index.tsx` calls `getAllPosts()`, which gets both existing checked in posts (LegacyPost) and posts from Sanity (PostV2).
   - This calls into `cms.ts` CMSClient, which uses some complex query langauge nonsense to get the CMS posts
 
 # Bugs
+- <p> tag font too big on mobile landscape
 - Maybe V2 posts don't get the article inversion effect?
 - BelowTheFold is broken if the first element after is text
 - Hover area for image is weirdly too big
@@ -19,6 +21,10 @@
 - How I did the header inversion effect
 - Why I migrated from my own CMS to Sanity
   - It's fun to hand roll things, but ease of upload trumps all
+
+### July 10
+- [X] Adding token only when in development mode, but then need to filter out deleted posts
+
 
 ### July 8
 - [X] Render PostV2 lol
